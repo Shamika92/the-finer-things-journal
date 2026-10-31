@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import GrainImage from '../components/GrainImage.astro';
 import { SITE, CATEGORIES } from '../data/site';
 ---
 <Base title="About" description="About The Finer Things Journal, an independent journal of culture, film, literature, art & objects that began on Instagram. What “finer” means here, and how to connect.">
@@ -11,7 +10,9 @@ import { SITE, CATEGORIES } from '../data/site';
   </section>
 
   <section class="wrap about reveal" style="animation-delay:.15s">
-    <GrainImage src="/images/about.svg" alt="" ratio="4 / 5" class="portrait" />
+    <div class="grain portrait logo-card" style="aspect-ratio: 4 / 5">
+      <img src="/logo.png" alt="The Finer Things Journal logo" />
+    </div>
 
     <div class="text">
       <p>
@@ -54,6 +55,13 @@ import { SITE, CATEGORIES } from '../data/site';
     max-width: 1080px;
   }
   .about :global(.portrait) { position: sticky; top: 2rem; }
+  .logo-card { display: flex; align-items: center; justify-content: center; background: #efe8dc; }
+  .logo-card img {
+    width: 30%;
+    height: auto;
+    filter: grayscale(1) brightness(1.18) contrast(1.9);
+    mix-blend-mode: multiply;
+  }
   /* All About paragraphs share the same serif style */
   .text p {
     margin: 0 0 1.4rem;
