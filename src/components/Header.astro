@@ -13,7 +13,7 @@ const isActive = (href: string) =>
 <header class="site-header">
   <div class="wrap inner">
     <a href="/" class="logo" aria-label={`${SITE.name} — home`}>
-      <img src="/logo.png" alt="tfj." width="64" height="65" />
+      <img src="/logo-transparent.png" alt="tfj." width="40" height="56" />
     </a>
     <nav aria-label="Main">
       {nav.map((item) => (
@@ -38,13 +38,7 @@ const isActive = (href: string) =>
   }
   .inner { align-items: center; }
   .logo { display: block; line-height: 0; }
-  /* multiply lets the logo's own paper background melt into the site's */
-  .logo img {
-    width: clamp(52px, 6vw, 64px);
-    height: auto;
-    filter: grayscale(1) brightness(1.18) contrast(1.9);
-    mix-blend-mode: multiply;
-  }
+  .logo img { height: clamp(46px, 5vw, 56px); width: auto; }
   nav { display: flex; gap: clamp(1.25rem, 3vw, 2.5rem); }
   nav a {
     position: relative;

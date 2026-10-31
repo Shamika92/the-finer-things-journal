@@ -2,7 +2,9 @@
    The Finer Things Journal — global styles
    ───────────────────────────────────────────────────────────── */
 
+/* The journal is designed on paper: stop browsers auto-darkening it */
 :root {
+  color-scheme: light only;
   --paper: #f4efe6;
   --ink: #2a2521;
   --ink-soft: #6b625a;

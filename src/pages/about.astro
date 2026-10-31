@@ -11,7 +11,7 @@ import { SITE, CATEGORIES } from '../data/site';
 
   <section class="wrap about reveal" style="animation-delay:.15s">
     <div class="grain portrait logo-card" style="aspect-ratio: 4 / 5">
-      <img src="/logo.png" alt="The Finer Things Journal logo" />
+      <img src="/logo-transparent.png" alt="The Finer Things Journal logo" />
     </div>
 
     <div class="text">
@@ -56,12 +56,7 @@ import { SITE, CATEGORIES } from '../data/site';
   }
   .about :global(.portrait) { position: sticky; top: 2rem; }
   .logo-card { display: flex; align-items: center; justify-content: center; background: #efe8dc; }
-  .logo-card img {
-    width: 30%;
-    height: auto;
-    filter: grayscale(1) brightness(1.18) contrast(1.9);
-    mix-blend-mode: multiply;
-  }
+  .logo-card img { width: 24%; height: auto; filter: none; }
   /* All About paragraphs share the same serif style */
   .text p {
     margin: 0 0 1.4rem;
