@@ -2,7 +2,7 @@
 title: "A Lemon Is Never Just a Lemon"
 dek: "A little study in art, poetry, food, fragrance & folklore."
 seoDescription: "The lemon across centuries of human life: in Dutch still lifes and Van Gogh, in Neruda's poetry, in the kitchen, in perfumery, and hung as nimbu-mirchi on Indian doorways."
-category: culture
+category: objects
 date: 2026-10-31
 cover: /images/journal/a-lemon-is-never-just-a-lemon/cover.jpg
 coverAlt: "An oil painting of ripe lemons hanging from a leafy branch against a dark background"

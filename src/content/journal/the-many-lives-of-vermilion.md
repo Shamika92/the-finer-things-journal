@@ -2,7 +2,7 @@
 title: "The Many Lives of Vermilion"
 dek: "One Colour, Centuries of Meaning."
 seoDescription: "Vermilion across cultures: cinnabar mined from poison and stone, Fushimi Inari's torii gates, Chinese lacquer and alchemy, Titian's Bacchus and Ariadne, and sindoor in India."
-category: art
+category: objects
 date: 2026-10-31
 cover: /images/journal/the-many-lives-of-vermilion/cover.jpg
 coverAlt: "A woman with a red bindi and loose curls, draped in vermilion cloth and lit by warm firelight"
