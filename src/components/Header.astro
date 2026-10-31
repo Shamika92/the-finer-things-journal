@@ -1,0 +1,72 @@
+---
+import { SITE } from '../data/site';
+
+const nav = [
+  { href: '/', label: 'Collection' },
+  { href: '/archive', label: 'Archive' },
+  { href: '/about', label: 'About' },
+];
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string) =>
+  href === '/' ? path === '/' || path.startsWith('/journal') : path.startsWith(href);
+---
+<header class="site-header">
+  <div class="wrap inner">
+    <a href="/" class="logo" aria-label={`${SITE.name} — home`}>
+      <img src="/logo.png" alt="tfj." width="64" height="65" />
+    </a>
+    <nav aria-label="Main">
+      {nav.map((item) => (
+        <a href={item.href} class:list={['eyebrow', { active: isActive(item.href) }]}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+  <hr class="rule wrap-rule" />
+</header>
+
+<style>
+  .site-header { padding-top: clamp(1.5rem, 4vw, 2.5rem); }
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    padding-bottom: clamp(1.25rem, 3vw, 1.75rem);
+  }
+  .inner { align-items: center; }
+  .logo { display: block; line-height: 0; }
+  /* multiply lets the logo's own paper background melt into the site's */
+  .logo img {
+    width: clamp(52px, 6vw, 64px);
+    height: auto;
+    filter: grayscale(1) brightness(1.18) contrast(1.9);
+    mix-blend-mode: multiply;
+  }
+  nav { display: flex; gap: clamp(1.25rem, 3vw, 2.5rem); }
+  nav a {
+    position: relative;
+    padding-block: 0.25rem;
+    transition: color 0.3s;
+  }
+  nav a:hover, nav a.active { color: var(--ink); }
+  nav a::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 100%; bottom: -2px;
+    height: 1px;
+    background: currentColor;
+    transition: right 0.4s ease;
+  }
+  nav a:hover::after, nav a.active::after { right: 0.24em; }
+  .wrap-rule {
+    max-width: calc(var(--max) - 2 * var(--gutter));
+    margin-inline: auto;
+    width: calc(100% - 2 * var(--gutter));
+  }
+  @media (max-width: 540px) {
+    .inner { flex-direction: column; align-items: center; }
+  }
+</style>

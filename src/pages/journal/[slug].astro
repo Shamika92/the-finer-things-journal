@@ -1,0 +1,270 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import GrainImage from '../../components/GrainImage.astro';
+import PostCard from '../../components/PostCard.astro';
+import { SITE, categoryLabel } from '../../data/site';
+import { getPosts, formatDate, readingTime } from '../../data/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, dek, category, date, updated, seoDescription, cover, coverAlt, coverShape, gallery } = post.data;
+
+const site = Astro.site!;
+const url = new URL(`/journal/${post.id}`, site).href;
+const images = [cover, ...gallery.map((g) => g.src)]
+  .filter((src) => !src.endsWith('.svg'))
+  .map((src) => new URL(src, site).href);
+
+// Tells Google this is an article: headline, dates, images, publisher.
+const schema = [
+  {
+    '@type': 'Article',
+    '@id': `${url}#article`,
+    headline: title,
+    description: seoDescription ?? dek,
+    datePublished: date.toISOString(),
+    dateModified: (updated ?? date).toISOString(),
+    articleSection: categoryLabel(category),
+    ...(images.length && { image: images }),
+    author: { '@type': SITE.author === SITE.name ? 'Organization' : 'Person', name: SITE.author, url: site.href },
+    publisher: { '@id': new URL('/#organization', site).href },
+    mainEntityOfPage: url,
+    isPartOf: { '@id': new URL('/#website', site).href },
+    inLanguage: 'en',
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Collection', item: site.href },
+      { '@type': 'ListItem', position: 2, name: categoryLabel(category), item: new URL(`/?type=${category}`, site).href },
+      { '@type': 'ListItem', position: 3, name: title, item: url },
+    ],
+  },
+];
+
+// "More from the journal": same type first, then the newest others.
+const all = await getPosts();
+const others = all.filter((p) => p.id !== post.id);
+const more = [
+  ...others.filter((p) => p.data.category === category),
+  ...others.filter((p) => p.data.category !== category),
+].slice(0, 3);
+---
+<Base
+  title={title}
+  description={seoDescription ?? dek}
+  image={cover}
+  imageAlt={coverAlt || title}
+  type="article"
+  published={date}
+  modified={updated}
+  section={categoryLabel(category)}
+  schema={schema}
+>
+  <article>
+    <header class="head wrap reveal">
+      <a class="eyebrow" href={`/?type=${category}`}>{categoryLabel(category)}</a>
+      <h1>{title}</h1>
+      <p class="dek">{dek}</p>
+      <p class="eyebrow byline">
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        <span aria-hidden="true">·</span>
+        {readingTime(post.body)} min read
+      </p>
+    </header>
+
+    <div class:list={['cover wrap reveal', coverShape]} style="animation-delay:.15s">
+      <GrainImage src={cover} alt={coverAlt} ratio={coverShape === 'portrait' ? '4 / 5' : '3 / 2'} eager />
+    </div>
+
+    <div class="prose wrap">
+      <Content />
+    </div>
+
+    {gallery.length > 0 && (
+      <section class="gallery wrap" aria-label="Gallery">
+        {gallery.map((img) => (
+          <figure>
+            <GrainImage src={img.src} alt={img.alt} ratio="4 / 5" />
+            {img.caption && <figcaption>{img.caption}</figcaption>}
+          </figure>
+        ))}
+      </section>
+    )}
+
+    <p class="end wrap" aria-hidden="true">❦</p>
+  </article>
+
+  {more.length > 0 && (
+    <section class="more wrap">
+      <hr class="rule" />
+      <span class="eyebrow">More from the journal</span>
+      <div class="more-grid">
+        {more.map((p, i) => <PostCard post={p} index={i} />)}
+      </div>
+    </section>
+  )}
+</Base>
+
+<style>
+  .head {
+    text-align: center;
+    max-width: 52rem;
+    padding-block: clamp(4rem, 10vw, 7.5rem) clamp(2.5rem, 5vw, 3.5rem);
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2.4rem, 6vw, 4.4rem);
+    line-height: 1.06;
+    margin: 1.2rem 0 1.25rem;
+  }
+  .dek {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+    color: var(--ink-soft);
+    margin: 0 auto 1.75rem;
+    max-width: 36rem;
+    line-height: 1.5;
+  }
+  .byline { display: flex; justify-content: center; gap: 0.6rem; color: var(--ink-faint); margin: 0; }
+  .cover { max-width: 1100px; margin-bottom: clamp(3.5rem, 8vw, 6rem); }
+  .cover.portrait { max-width: calc(560px + 2 * var(--gutter)); }
+
+  /* Article body */
+  .prose { max-width: calc(var(--measure) + 2 * var(--gutter)); }
+  .prose :global(p) { margin: 0 0 1.5rem; }
+  /* keeps the drop cap inside the first paragraph, even when it is one line */
+  .prose > :global(p:first-of-type) { display: flow-root; }
+  .prose > :global(p:first-of-type::first-letter) {
+    float: left;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 4.6rem;
+    line-height: 0.82;
+    padding: 0.35rem 0.6rem 0 0;
+  }
+  .prose :global(h2) {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.9rem;
+    line-height: 1.2;
+    margin: 3.25rem 0 1.1rem;
+  }
+  .prose :global(h3) {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 2.75rem 0 0.9rem;
+  }
+  .prose :global(blockquote) {
+    margin: 3rem 0;
+    padding: 0;
+    border: 0;
+    text-align: center;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.6rem, 3.4vw, 2.1rem);
+    line-height: 1.3;
+  }
+  .prose :global(blockquote p) { margin: 0; }
+  /* Longer quotations: <blockquote class="long"> */
+  .prose :global(blockquote.long) {
+    font-size: clamp(1.25rem, 2.4vw, 1.45rem);
+    line-height: 1.5;
+    color: var(--ink-soft);
+    padding-inline: clamp(0rem, 3vw, 2rem);
+  }
+  .prose :global(a) { border-bottom: 1px solid var(--ink-faint); }
+  .prose :global(a:hover) { border-color: var(--ink); }
+  .prose :global(hr) { border: 0; text-align: center; margin: 3rem 0; }
+  .prose :global(hr::before) { content: '·  ·  ·'; color: var(--ink-faint); letter-spacing: 0.4em; }
+  .prose :global(img) { margin: 2.5rem 0; filter: saturate(0.85) sepia(0.06); }
+
+  /* ── Images placed inside an article (see README) ── */
+  .prose :global(figure) { margin: clamp(2.5rem, 6vw, 3.75rem) 0; }
+  .prose :global(figure img) { margin: 0; height: auto; }
+  .prose :global(figcaption) {
+    margin-top: 0.85rem;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.98rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  /* wider than the text column */
+  .prose :global(figure.wide),
+  .prose :global(figure.pair) {
+    width: min(calc(100vw - 2 * var(--gutter)), 1000px);
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+  .prose :global(figure.pair) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(0.75rem, 2.5vw, 1.75rem);
+    width: min(calc(100vw - 2 * var(--gutter)), 860px);
+  }
+  .prose :global(figure.pair .grain) { aspect-ratio: 4 / 5; }
+  .prose :global(figure.pair img) { height: 100%; }
+  .prose :global(figure.pair figcaption) { grid-column: 1 / -1; margin-top: 0; }
+  .prose :global(figure.narrow) { max-width: 400px; margin-inline: auto; }
+
+  /* Poetry: keeps line breaks, credited underneath */
+  .prose :global(blockquote.poem) {
+    text-align: left;
+    width: fit-content;
+    margin: 3rem auto;
+    font-size: clamp(1.35rem, 2.6vw, 1.6rem);
+    line-height: 1.45;
+  }
+  .prose :global(blockquote.poem p) { white-space: pre-line; }
+  .prose :global(blockquote.poem cite) {
+    display: block;
+    margin-top: 1.4rem;
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 0.66rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .prose :global(blockquote.poem cite em) { font-style: normal; }
+  .prose :global(ul), .prose :global(ol) { padding-left: 1.2rem; margin: 0 0 1.5rem; }
+
+  .gallery {
+    max-width: 1100px;
+    margin-top: clamp(3rem, 7vw, 5rem);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap: clamp(1.25rem, 3vw, 2.25rem);
+  }
+  figure { margin: 0; }
+  figcaption {
+    margin-top: 0.8rem;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.98rem;
+    color: var(--ink-soft);
+  }
+  .end { text-align: center; color: var(--ink-faint); font-size: 1.4rem; margin: 3.5rem auto 0; }
+
+  .more { margin-top: clamp(4rem, 10vw, 7rem); }
+  .more > .eyebrow { display: block; text-align: center; margin: 2.5rem 0 3rem; }
+  .more-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+    gap: 3rem clamp(1.5rem, 3.5vw, 3rem);
+  }
+</style>

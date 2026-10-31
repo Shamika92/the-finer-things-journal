@@ -1,68 +1,88 @@
 # The Finer Things Journal
 
-A static editorial journal. `dist/` is the complete deployable website. There are no runtime dependencies or external font requests.
+A culture & life journal, explored through films, literature, art & objects.
 
-## Structure
-
-- Homepage: four painted covers leading to Shelf, Screen, Objects & Culture, and My Words.
-- Each category has its own article/media grid, with nine entries initially and Load more as the category grows.
-- About: the introductory essay and contact email. The introduction is not included among the category entries.
-- The header links only to About. The identity returns home. Instagram and artwork credits are in the footer.
-- The old Bookmarks URL redirects home. Bookmarks data is retained in the source for possible later use.
-
-## Everyday updates
-
-1. Edit `content.json`.
-2. Run `node scripts/build-content.mjs`.
-3. Preview locally and deploy the updated `dist/` folder to your static host. See below.
-
-`categories` controls the four cover labels, subtitles, images, crop positions, routes and artwork credits. The four current covers were supplied by TFTJ. All images and fonts are served locally.
-
-`entries` controls the category grids. Add or reorder objects with:
-- `title`, `description`
-- `category`: `shelf`, `screen`, `objects`, or `writing`
-- `label`: short image label
-- `image` and `imageAlt`, or a short `preview` for a typographic poem card
-- `url`: an HTTPS link or a local `.html` page
-- optional `linkLabel`: override the automatic Instagram/article label
-
-For a reading page, set `format` to `article` or `poem` and add `body` blocks. Each block has a `type` (`paragraph`, `heading`, `quote`, or `stanza`) and `text`. Heading blocks may also have `meta`, such as an author or country. Use newline characters inside a stanza to preserve the poem's line breaks; use a separate stanza block for each blank line between stanzas. The build generates the page at the entry's local `url` with category navigation, reading time, and a link to another piece in the same section.
-
-Optional fields: `imageCaption`, `imagePosition` (two percentage values), and `sources` (an array of `{title, url}` links). Source links appear under an expandable “Sources & further reading” section. Put new images in `dist/assets/`. Do not edit generated HTML directly.
-
-Entry counts and Load more adapt automatically. The grid renders all entries in HTML for a usable fallback without JavaScript; JavaScript progressively reveals them in batches of nine. Categories with exactly two entries use a wider two-column layout, stacking on small screens.
-
-The initial eight pieces comprise six short editorial adaptations and the exact user-supplied texts of Pretty Things and Midnight Poem. The poems' wording and stanza breaks must be preserved unless the author requests an edit.
-
-`about` contains the intro title, subtitle, cover, route and paragraph strings. `contactEmail` controls the mail link. Homepage wording and common headers/footers are in `scripts/build-content.mjs`.
-
-## Source files
-
-- `scripts/build-content.mjs`: validates data and generates homepage, category pages, reading pages and About.
-- `dist/style.css`: responsive paper/glass layout and typography.
-- `dist/app.js`: Load more, credits dialog and compatibility for old category query links.
-
-No editor dashboard, analytics or trackers are included.
-
-## Local development
-
-Requirements: Node.js 18 or newer for the generator. No npm install is needed. Python 3 can serve the preview.
+## Run it
 
 ```bash
-git clone https://github.com/Shamika92/the-finer-things-journal.git
-cd the-finer-things-journal
-node scripts/build-content.mjs
-python3 -m http.server 8000 --directory dist
+npm install      # first time only
+npm run dev      # open http://localhost:4321
+npm run build    # outputs the finished site to /dist
 ```
 
-Open http://localhost:8000 in your browser. After content changes, rebuild and refresh. Commit both `content.json` and the regenerated HTML pages. CSS and JavaScript are maintained directly in `dist/style.css` and `dist/app.js`.
+## Add a new article (2 steps)
 
-## Hosting
+**1. Add the images.** Make a folder named after the article and put the images in it:
 
-Build command: `node scripts/build-content.mjs`
+```
+public/images/journal/my-new-article/
+  cover.jpg
+  01.jpg   (optional gallery images)
+  02.jpg
+```
 
-Publish directory: `dist`
+**2. Add the text.** Create `src/content/journal/my-new-article.md`:
 
-The site needs only static file hosting; it has no backend, database, runtime secrets, or package dependencies. All assets use relative paths. The existing ChatGPT Sites deployment is separate from this GitHub repository. Pushing here does not automatically update that deployment; a deployment integration must be configured separately.
+```markdown
+---
+title: My New Article
+dek: One line that sits under the title.
+category: art            # film | literature | art | objects | culture | life
+date: 2026-11-15
+cover: /images/journal/my-new-article/cover.jpg
+coverAlt: Short description of the cover image
+coverShape: portrait     # optional: for tall cover photos (default is landscape)
+gallery:                 # optional; delete if not needed
+  - src: /images/journal/my-new-article/01.jpg
+    caption: A caption.
+draft: false             # true = hidden while you work on it
+---
 
-This export includes the current source and assets. Earlier ChatGPT Sites revision history and host-specific project configuration are not included.
+Your article goes here. Use ## for section headings, ### for small headings,
+> for a pull quote, and --- for a section break.
+```
+
+The file name becomes the URL: `/journal/my-new-article`.
+Images get the grain filter automatically.
+
+## Where things live
+
+| What | Where |
+|---|---|
+| Site name, tagline, Instagram link, categories | `src/data/site.ts` |
+| Articles | `src/content/journal/*.md` |
+| Article images | `public/images/journal/<article-name>/` |
+| Paper background & grain textures | `public/textures/` |
+| Colours, fonts, spacing | `src/styles/global.css` |
+| Pages: Collection, Archive, About | `src/pages/` |
+
+## Linking from Instagram
+
+- Home: `/`
+- A filtered view: `/?type=film` (or literature, art, objects, culture, life)
+- A specific article: `/journal/<article-name>`
+
+## Deploying
+
+Free options: Netlify, Vercel or Cloudflare Pages. Connect the folder or repo,
+set build command `npm run build` and output directory `dist`.
+Then update `site` in `astro.config.mjs` to your real domain.
+
+## SEO
+
+Handled automatically on every page: titles, descriptions, canonical URLs,
+link-preview images, `sitemap-index.xml`, `robots.txt`, `rss.xml`, and
+structured data that tells Google this is a publication, who publishes it, and that each article is an article.
+
+**When writing an article:**
+- Use a **JPG cover** (around 1600px wide). Instagram, WhatsApp and Google can't show SVGs.
+- Write the `dek` as a real sentence of about 120–160 characters. Google uses it as the snippet.
+- Optional frontmatter: `seoDescription:` (a custom Google snippet) and `updated:` (date of a revision).
+- Write descriptive `coverAlt` and gallery `alt` text. It helps Google Images.
+
+**Before launch:** set `site` in `astro.config.mjs` and the Instagram link in `src/data/site.ts`.
+
+**After launch:**
+1. Add the domain to Google Search Console and submit `https://YOURDOMAIN/sitemap-index.xml`.
+2. Do the same in Bing Webmaster Tools (it can import from Search Console in one click).
+3. Put the site link in your Instagram bio and website field.

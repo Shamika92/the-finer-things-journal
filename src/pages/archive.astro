@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+import { categoryLabel } from '../data/site';
+import { getPosts } from '../data/posts';
+
+const posts = await getPosts();
+const byYear = Map.groupBy
+  ? Map.groupBy(posts, (p) => p.data.date.getFullYear())
+  : posts.reduce((m, p) => {
+      const y = p.data.date.getFullYear();
+      m.set(y, [...(m.get(y) ?? []), p]);
+      return m;
+    }, new Map<number, typeof posts>());
+const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+---
+<Base title="Archive" description="The complete archive of The Finer Things Journal: every essay, collection and picture story on culture, film, literature, art & objects, newest first.">
+  <section class="page-head wrap reveal">
+    <span class="eyebrow">Archive</span>
+    <h1>Everything, <em>in order</em></h1>
+    <p>Every entry in the journal, newest first.</p>
+  </section>
+
+  <section class="wrap archive reveal" style="animation-delay:.15s">
+    {[...byYear].map(([year, list]) => (
+      <div class="year">
+        <h2>{year}</h2>
+        <ol>
+          {list.map((p) => (
+            <li>
+              <a href={`/journal/${p.id}`}>
+                <time class="eyebrow" datetime={p.data.date.toISOString()}>{fmt(p.data.date)}</time>
+                <span class="title">{p.data.title}</span>
+                <span class="eyebrow cat">{categoryLabel(p.data.category)}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </div>
+    ))}
+  </section>
+</Base>
+
+<style>
+  .archive { max-width: 900px; }
+  .year {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 1rem 2rem;
+    padding-block: 2.5rem;
+    border-top: 1px solid var(--rule);
+  }
+  h2 {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 2rem;
+    line-height: 1;
+  }
+  ol { list-style: none; margin: 0; padding: 0; }
+  li + li { border-top: 1px solid var(--rule); }
+  li a {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr auto;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding-block: 1.1rem;
+  }
+  .title {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    line-height: 1.3;
+    transition: color 0.3s;
+  }
+  li a:hover .title { color: var(--accent); }
+  .cat { font-size: 0.6rem; color: var(--ink-faint); }
+  @media (max-width: 640px) {
+    .year { grid-template-columns: 1fr; }
+    li a { grid-template-columns: 1fr; gap: 0.3rem; }
+  }
+</style>

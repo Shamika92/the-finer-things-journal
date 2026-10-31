@@ -1,0 +1,72 @@
+---
+import { CATEGORIES } from '../data/site';
+---
+<div class="filter" role="group" aria-label="Filter by type">
+  <span class="eyebrow label">Filter</span>
+  <div class="options">
+    <button type="button" class="eyebrow" data-filter="all" aria-pressed="true">All</button>
+    {CATEGORIES.map((c) => (
+      <button type="button" class="eyebrow" data-filter={c.id} aria-pressed="false">{c.label}</button>
+    ))}
+  </div>
+</div>
+
+<script>
+  // Filters cards by data-category. Supports links like /?type=film (handy from Instagram).
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-category]')];
+  const empty = document.querySelector<HTMLElement>('[data-empty]');
+
+  function apply(type: string, updateUrl = true) {
+    if (!buttons.some((b) => b.dataset.filter === type)) type = 'all';
+    buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.filter === type)));
+    let shown = 0;
+    cards.forEach((card) => {
+      const match = type === 'all' || card.dataset.category === type;
+      card.hidden = !match;
+      if (match) shown++;
+    });
+    if (empty) empty.hidden = shown > 0;
+    if (updateUrl) {
+      const url = new URL(location.href);
+      type === 'all' ? url.searchParams.delete('type') : url.searchParams.set('type', type);
+      history.replaceState(null, '', url);
+    }
+  }
+
+  buttons.forEach((b) => b.addEventListener('click', () => apply(b.dataset.filter!)));
+  apply(new URLSearchParams(location.search).get('type') ?? 'all', false);
+</script>
+
+<style>
+  .filter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.75rem 1.75rem;
+    padding-block: 1.6rem;
+    border-block: 1px solid var(--rule);
+    margin-bottom: clamp(3rem, 7vw, 5rem);
+  }
+  .label { color: var(--ink-faint); }
+  .options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem clamp(1rem, 2.5vw, 2rem);
+  }
+  button {
+    appearance: none;
+    background: none;
+    border: 0;
+    padding: 0.3rem 0;
+    cursor: pointer;
+    color: var(--ink-faint);
+    border-bottom: 1px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  button:hover { color: var(--ink); }
+  button[aria-pressed='true'] { color: var(--ink); border-bottom-color: var(--ink); }
+  button:focus-visible { outline: 1px solid var(--ink-soft); outline-offset: 4px; }
+</style>

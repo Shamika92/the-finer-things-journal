@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import GrainImage from '../components/GrainImage.astro';
+import { SITE, CATEGORIES } from '../data/site';
+---
+<Base title="About" description="About The Finer Things Journal, an independent journal of culture, film, literature, art & objects that began on Instagram. What “finer” means here, and how to connect.">
+  <section class="page-head wrap reveal">
+    <span class="eyebrow">About</span>
+    <h1>A slower kind of <em>looking</em></h1>
+    <p>{SITE.tagline}</p>
+  </section>
+
+  <section class="wrap about reveal" style="animation-delay:.15s">
+    <GrainImage src="/images/about.svg" alt="" ratio="4 / 5" class="portrait" />
+
+    <div class="text">
+      <p>
+        The Finer Things Journal began as small squares on Instagram: a still from a film, a sentence
+        underlined in pencil, the curve of a cup on a windowsill. This is where those squares get room to breathe.
+      </p>
+      <p>
+        The word “finer” can sound expensive. Here, it has more to do with what makes something worth our time.
+        That might be the work behind an object, the care in a sentence, or a story that helps us recognise
+        something in our own lives. Price and polish tell us very little about whether we will remember it.
+      </p>
+      <p>
+        The journal moves between a handful of subjects, though they tend to bleed into one another.
+      </p>
+      <ul class="topics">
+        {CATEGORIES.map((c) => (
+          <li><a href={`/?type=${c.id}`}>{c.label}</a></li>
+        ))}
+      </ul>
+
+      <hr class="rule" />
+
+      <h2>Connect</h2>
+      <p>
+        If something here stayed with you, I'd love to hear about it. The conversation mostly happens on Instagram.
+      </p>
+      <a class="cta eyebrow" href={SITE.instagram.url} target="_blank" rel="noopener">
+        {SITE.instagram.handle} →
+      </a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .about {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: clamp(2.5rem, 7vw, 6rem);
+    align-items: start;
+    max-width: 1080px;
+  }
+  .about :global(.portrait) { position: sticky; top: 2rem; }
+  /* All About paragraphs share the same serif style */
+  .text p {
+    margin: 0 0 1.4rem;
+    font-family: var(--serif);
+    font-size: clamp(1.35rem, 2.4vw, 1.6rem);
+    line-height: 1.45;
+  }
+  .topics {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 2.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.35rem;
+  }
+  .topics li:not(:last-child)::after { content: ','; margin-right: 0.5em; color: var(--ink-faint); }
+  .topics a { border-bottom: 1px solid var(--rule); transition: border-color 0.3s; }
+  .topics a:hover { border-color: var(--ink); }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.9rem;
+    margin: 2.5rem 0 0.75rem;
+  }
+  .cta {
+    display: inline-block;
+    color: var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 0.3rem;
+  }
+  @media (max-width: 760px) {
+    .about { grid-template-columns: 1fr; }
+    .about :global(.portrait) { position: static; max-width: 420px; }
+  }
+</style>

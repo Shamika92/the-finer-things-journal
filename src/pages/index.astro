@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import PostGrid from '../components/PostGrid.astro';
+import CategoryFilter from '../components/CategoryFilter.astro';
+import { SITE } from '../data/site';
+import { getPosts } from '../data/posts';
+
+const posts = await getPosts();
+---
+<Base>
+  <section class="page-head wrap reveal">
+    <span class="eyebrow">The Collection</span>
+    <h1>The Finer Things <em>Journal</em></h1>
+    <p>{SITE.tagline}</p>
+  </section>
+
+  <section class="wrap">
+    <CategoryFilter />
+    <PostGrid posts={posts} />
+    <p class="empty" data-empty hidden>Nothing here yet. Something is being written.</p>
+  </section>
+</Base>
+
+<style>
+  .empty {
+    text-align: center;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--ink-soft);
+    padding-block: 3rem;
+  }
+</style>

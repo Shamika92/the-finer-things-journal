@@ -1,0 +1,41 @@
+---
+import { SITE } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap">
+    <hr class="rule" />
+    <div class="inner">
+      <p class="sign">
+        <em>{SITE.tagline}</em>
+      </p>
+      <a class="eyebrow ig" href={SITE.instagram.url} target="_blank" rel="noopener">
+        Follow along on Instagram — {SITE.instagram.handle}
+      </a>
+    </div>
+    <p class="eyebrow small">© {year} {SITE.name}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { margin-top: clamp(5rem, 12vw, 9rem); padding-bottom: 2.5rem; }
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1.5rem;
+    padding-block: 2.5rem 2rem;
+  }
+  .sign {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .sign em { color: var(--ink); }
+  .ig { transition: color 0.3s; }
+  .ig:hover { color: var(--ink); }
+  .small { margin: 0; color: var(--ink-faint); font-size: 0.6rem; }
+</style>

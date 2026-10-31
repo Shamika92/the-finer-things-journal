@@ -1,0 +1,120 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+  type?: 'website' | 'article';
+  published?: Date;
+  modified?: Date;
+  section?: string;
+  /** Extra structured data (JSON-LD) for this page */
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = SITE.description,
+  image,
+  imageAlt = SITE.name,
+  type = 'website',
+  published,
+  modified,
+  section,
+  schema,
+  noindex = false,
+} = Astro.props;
+
+// Home: "The Finer Things Journal — An independent journal of…"
+// Other pages: "Page Title — The Finer Things Journal"
+const fullTitle = title ? `${title} — ${SITE.name}` : `${SITE.name} — ${SITE.tagline.replace(/\.$/, '')}`;
+
+const site = Astro.site!;
+const path = Astro.url.pathname.replace(/(\.html|\/)$/, '') || '/';
+const canonical = new URL(path, site).href;
+
+// Social platforms can't show SVGs, so fall back to the default share image.
+const shareImage = new URL(image && !image.endsWith('.svg') ? image : SITE.defaultImage, site).href;
+
+// Structured data that tells Google who publishes the site.
+const publisher = {
+  '@type': 'Organization',
+  '@id': new URL('/#organization', site).href,
+  name: SITE.name,
+  url: site.href,
+  logo: { '@type': 'ImageObject', url: new URL('/logo-512.png', site).href, width: 512, height: 512 },
+  sameAs: [SITE.instagram.url],
+};
+const baseSchema = [
+  publisher,
+  {
+    '@type': 'WebSite',
+    '@id': new URL('/#website', site).href,
+    name: SITE.name,
+    alternateName: ['TFTJ', 'Finer Things Journal'],
+    url: site.href,
+    description: SITE.description,
+    inLanguage: 'en',
+    publisher: { '@id': publisher['@id'] },
+  },
+];
+const extra = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const jsonLd = { '@context': 'https://schema.org', '@graph': [...baseSchema, ...extra] };
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
+    <meta name="author" content={SITE.author} />
+    <meta name="theme-color" content="#f4efe6" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title={SITE.name} href={new URL('/rss.xml', site)} />
+
+    <!-- Link previews: Instagram, WhatsApp, iMessage, Pinterest, X -->
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content={SITE.locale} />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title ?? SITE.name} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={shareImage} />
+    <meta property="og:image:alt" content={imageAlt} />
+    {published && <meta property="article:published_time" content={published.toISOString()} />}
+    {modified && <meta property="article:modified_time" content={modified.toISOString()} />}
+    {section && <meta property="article:section" content={section} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title ?? SITE.name} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={shareImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
