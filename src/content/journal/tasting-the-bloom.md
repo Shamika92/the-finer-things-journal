@@ -9,7 +9,9 @@ coverAlt: "Flatbreads topped with purple spread, roses, pansies and microgreens,
 coverShape: portrait
 ---
 
-When the flowers bloom, the air smells too sweet to just breathe in. Across the world, that desire turned fleeting petals into delicacies you wait a whole year for.
+When the flowers bloom, the air smells too sweet to just breathe in.
+
+> Across the world, that desire turned fleeting petals into delicacies you wait a whole year for.
 
 ## 01. Sakuramochi
 
