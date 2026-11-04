@@ -1,0 +1,71 @@
+---
+// The newest post, presented large at the top of the Collection.
+import GrainImage from './GrainImage.astro';
+import { categoryLabel } from '../data/site';
+import { formatDate } from '../data/posts';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props { post: CollectionEntry<'journal'> }
+const { post } = Astro.props;
+const { title, dek, category, date, cover, coverAlt, coverFocus } = post.data;
+---
+<article class="lead reveal" data-category={category}>
+  <a href={`/journal/${post.id}`}>
+    <GrainImage src={cover} alt={coverAlt} ratio="3 / 2" focus={coverFocus} eager />
+    <div class="text">
+      <span class="eyebrow kicker">Latest</span>
+      <h2>{title}</h2>
+      <p class="dek">{dek}</p>
+      <div class="meta">
+        <span class="eyebrow">{categoryLabel(category)}</span>
+        <span class="dot" aria-hidden="true">·</span>
+        <time class="eyebrow" datetime={date.toISOString()}>{formatDate(date)}</time>
+      </div>
+      <span class="eyebrow read">Read the story →</span>
+    </div>
+  </a>
+</article>
+
+<style>
+  .lead { margin-bottom: clamp(4rem, 9vw, 6.5rem); }
+  .lead a {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+  .lead :global(.grain img) { will-change: transform; }
+  .lead a:hover :global(.grain img) { transform: scale(1.025); }
+  .kicker { color: var(--ink-faint); }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2.2rem, 4.2vw, 3.6rem);
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    margin: 1rem 0 1.1rem;
+    transition: color 0.3s;
+  }
+  .lead a:hover h2 { color: var(--accent); }
+  .dek {
+    margin: 0 0 1.6rem;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+    line-height: 1.45;
+    color: var(--ink-soft);
+  }
+  .meta { display: flex; gap: 0.6rem; align-items: center; }
+  .meta .eyebrow { font-size: 0.6rem; }
+  .dot { color: var(--ink-faint); }
+  .read {
+    display: inline-block;
+    margin-top: 2rem;
+    color: var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 0.25rem;
+  }
+  @media (max-width: 820px) {
+    .lead a { grid-template-columns: 1fr; gap: 1.6rem; }
+  }
+</style>

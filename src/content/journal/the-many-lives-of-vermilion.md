@@ -4,9 +4,8 @@ dek: "One Colour, Centuries of Meaning."
 seoDescription: "Vermilion across cultures: cinnabar mined from poison and stone, Fushimi Inari's torii gates, Chinese lacquer and alchemy, Titian's Bacchus and Ariadne, and sindoor in India."
 category: objects
 date: 2026-10-31
-cover: /images/journal/the-many-lives-of-vermilion/cover.jpg
-coverAlt: "A woman with a red bindi and loose curls, draped in vermilion cloth and lit by warm firelight"
-coverShape: portrait
+cover: /images/journal/the-many-lives-of-vermilion/cover-wide.jpg
+coverAlt: "A stone path curving beneath rows of vermilion torii gates at Fushimi Inari Taisha, with a hanging lantern"
 ---
 
 Few colours carry the physical weight and psychic charge of vermilion. Neither purely scarlet nor orange, it is an incandescent, blood-warm red that refuses to recede into a background. Across continents and millennia, human hands have dug into the dark belly of the earth to unearth it, risking madness and toxicity to paint what words could not reach: the exact line where mortality brushes against the divine.
@@ -56,3 +55,5 @@ In India, the pigment makes its most intimate and enduring journey: it returns d
   <div class="grain"><img src="/images/journal/the-many-lives-of-vermilion/devi-sindoor.jpg" alt="A clay devi idol with a red bindi and gold nose ring, framed by red hibiscus and cloth" loading="lazy" /></div>
   <figcaption><em>Sindoor</em>, in its box and on clay.</figcaption>
 </figure>
+
+<p class="credits">Cover photograph: torii path at Fushimi Inari Taisha by Basile Morin, via Wikimedia Commons (CC BY-SA 4.0).</p>

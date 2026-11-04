@@ -4,9 +4,8 @@ dek: "A little study in art, poetry, food, fragrance & folklore."
 seoDescription: "The lemon across centuries of human life: in Dutch still lifes and Van Gogh, in Neruda's poetry, in the kitchen, in perfumery, and hung as nimbu-mirchi on Indian doorways."
 category: objects
 date: 2026-10-31
-cover: /images/journal/a-lemon-is-never-just-a-lemon/cover.jpg
-coverAlt: "An oil painting of ripe lemons hanging from a leafy branch against a dark background"
-coverShape: portrait
+cover: /images/journal/a-lemon-is-never-just-a-lemon/cover-wide.jpg
+coverAlt: "Willem Claesz. Heda, Still Life with Oysters, a Rummer, a Lemon and a Silver Bowl: a half-peeled lemon, its rind curling from a pewter plate"
 ---
 
 We're celebrating the many forms this humble little fruit has taken across centuries of human life.

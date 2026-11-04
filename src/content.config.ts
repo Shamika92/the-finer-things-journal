@@ -17,6 +17,7 @@ const journal = defineCollection({
     seoDescription: z.string().optional(),    // optional: custom Google snippet (else the dek is used)
     cover: z.string(),                        // e.g. /images/journal/<slug>/cover.jpg
     coverAlt: z.string().default(''),
+    coverFocus: z.string().default('center'), // what stays in frame when cropped: 'top', 'center 30%', 'left'…
     coverShape: z.enum(['landscape', 'portrait']).default('landscape'), // use portrait for tall photos
     gallery: z
       .array(z.object({ src: z.string(), alt: z.string().default(''), caption: z.string().optional() }))

@@ -1,11 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
 import PostGrid from '../components/PostGrid.astro';
+import LeadStory from '../components/LeadStory.astro';
 import CategoryFilter from '../components/CategoryFilter.astro';
 import { SITE } from '../data/site';
 import { getPosts } from '../data/posts';
 
 const posts = await getPosts();
+const [lead, ...rest] = posts;
 ---
 <Base>
   <section class="page-head wrap reveal">
@@ -16,7 +18,8 @@ const posts = await getPosts();
 
   <section class="wrap">
     <CategoryFilter />
-    <PostGrid posts={posts} />
+    {lead && <LeadStory post={lead} />}
+    <PostGrid posts={rest} />
     <p class="empty" data-empty hidden>Nothing here yet. Something is being written.</p>
   </section>
 </Base>

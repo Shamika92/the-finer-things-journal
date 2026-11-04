@@ -4,9 +4,8 @@ dek: "A celebration of seasonal blooms around the world."
 seoDescription: "Six seasonal flower foods from around the world: Japanese sakuramochi, French candied violets, British elderflower cooler, Chinese osmanthus jelly, Kashmiri saffron kahwa and Indian gulkand."
 category: culture
 date: 2026-11-04
-cover: /images/journal/tasting-the-bloom/cover.jpg
+cover: /images/journal/tasting-the-bloom/cover-wide.jpg
 coverAlt: "Flatbreads topped with purple spread, roses, pansies and microgreens, scattered with pink petals"
-coverShape: portrait
 ---
 
 When the flowers bloom, the air smells too sweet to just breathe in.

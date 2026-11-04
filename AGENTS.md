@@ -23,7 +23,7 @@ Most work here is **adding a new post**. Follow this guide exactly.
 2. **Choose:**
    - **slug**: kebab-case from the title, e.g. `the-many-lives-of-vermilion`. It becomes the URL `/journal/<slug>`.
    - **category**: one of `film | literature | art | objects | culture | life` (defined in `src/data/site.ts`).
-   - **cover**: the strongest image. If it's taller than it is wide, set `coverShape: portrait`.
+   - **cover**: a **landscape** image (3:2), at least 1600px wide. The home page shows the newest post large as the lead story and the rest as 3:2 cards. Keep covers in a muted, painterly, editorial tone. Good sources are public-domain paintings and museum images on Wikimedia Commons, Pexels, or the owner's Canva. If a CC BY or CC BY-SA image is used, add the credit in `<p class="credits">…</p>` at the end of the post. Use `coverFocus: top` (or `center 30%` and so on) to keep faces or subjects in frame. Use `coverShape: portrait` only if the owner insists on a tall cover.
    - **image placement**: one image (or a pair) after the section it illustrates.
 3. **Convert images** into `public/images/journal/<slug>/` with descriptive filenames. Use JPG, and **never upscale**:
    ```bash

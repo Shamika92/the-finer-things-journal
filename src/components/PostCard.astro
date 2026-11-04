@@ -6,11 +6,11 @@ import type { CollectionEntry } from 'astro:content';
 
 interface Props { post: CollectionEntry<'journal'>; index?: number }
 const { post, index = 0 } = Astro.props;
-const { title, dek, category, date, cover, coverAlt } = post.data;
+const { title, dek, category, date, cover, coverAlt, coverFocus } = post.data;
 ---
 <article class="card reveal" data-category={category} style={`animation-delay:${0.08 * index + 0.1}s`}>
   <a href={`/journal/${post.id}`}>
-    <GrainImage src={cover} alt={coverAlt} />
+    <GrainImage src={cover} alt={coverAlt} ratio="3 / 2" focus={coverFocus} />
     <div class="meta">
       <span class="eyebrow">{categoryLabel(category)}</span>
       <span class="dot" aria-hidden="true">·</span>

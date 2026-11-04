@@ -4,11 +4,12 @@ interface Props {
   src: string;
   alt?: string;
   ratio?: string;      // e.g. "4 / 5", "3 / 2"
+  focus?: string;      // CSS object-position: what stays in frame when cropped
   eager?: boolean;
   class?: string;
 }
-const { src, alt = '', ratio = '4 / 5', eager = false, class: className } = Astro.props;
+const { src, alt = '', ratio = '4 / 5', focus = 'center', eager = false, class: className } = Astro.props;
 ---
 <div class:list={['grain', className]} style={`aspect-ratio: ${ratio}`}>
-  <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+  <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" style={`object-position: ${focus}`} />
 </div>
