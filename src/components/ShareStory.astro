@@ -102,28 +102,70 @@ const { title, category, cover, url } = Astro.props;
       return new Promise((res, rej) => c.toBlob((b) => (b ? res(b) : rej()), 'image/jpeg', 0.92));
     }
 
-    root.querySelector('[data-story]')!.addEventListener('click', async () => {
-      say('Preparing story…');
-      try {
-        const blob = await makeStory();
-        const file = new File([blob], 'tftj-story.jpg', { type: 'image/jpeg' });
-        const copied = await copyLink();
-        if (navigator.canShare?.({ files: [file] })) {
-          await navigator.share({ files: [file] });
-          say(copied ? 'Link copied. Add it to your story with a Link sticker.' : '');
-        } else {
-          const a = document.createElement('a');
-          a.href = URL.createObjectURL(blob); a.download = 'tftj-story.jpg'; a.click();
-          say(copied ? 'Story image downloaded, link copied.' : 'Story image downloaded.');
-        }
-      } catch (e) {
-        if ((e as Error)?.name !== 'AbortError') say('Could not create the story image.');
-        else say('');
+    // Build the story image ahead of time: phones only allow the share sheet
+    // (and clipboard) immediately after a tap, so nothing slow can run on click.
+    let ready: Promise<File> | null = null;
+    let file: File | null = null;
+    const prepare = () => {
+      if (!ready) ready = makeStory().then((b) => (file = new File([b], 'tftj-story.jpg', { type: 'image/jpeg' })));
+      return ready;
+    };
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { prepare().catch(() => {}); io.disconnect(); }
+    }, { rootMargin: '800px' });
+    io.observe(root);
+
+    const storyBtn = root.querySelector<HTMLButtonElement>('[data-story]')!;
+    const copyBtn = root.querySelector<HTMLButtonElement>('[data-copy]')!;
+    storyBtn.addEventListener('pointerdown', () => { prepare().catch(() => {}); });
+
+    const flash = (btn: HTMLButtonElement, text: string) => {
+      const orig = btn.dataset.label ?? (btn.dataset.label = btn.textContent ?? '');
+      btn.textContent = text;
+      setTimeout(() => { btn.textContent = orig; }, 2200);
+    };
+
+    // Fallback: show the image so it can be saved with a long-press
+    const showImage = (f: File) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'story-preview';
+      const img = new Image(); img.src = URL.createObjectURL(f); img.alt = 'Story image';
+      const hint = document.createElement('p'); hint.textContent = 'Press and hold the image to save it, then share it to your story.';
+      const close = document.createElement('button'); close.type = 'button'; close.textContent = 'Close';
+      close.onclick = () => wrap.remove();
+      wrap.append(img, hint, close); document.body.appendChild(wrap);
+    };
+
+    storyBtn.addEventListener('click', () => {
+      // copy the link now, while the tap still counts
+      navigator.clipboard?.writeText(url).catch(() => {});
+      if (!file) {
+        say('Preparing your story image… tap again in a moment.');
+        prepare().then(() => say('Ready. Tap “Instagram Story” again.')).catch(() => say('Could not create the story image.'));
+        return;
+      }
+      const f = file;
+      if (navigator.canShare?.({ files: [f] })) {
+        navigator.share({ files: [f] })
+          .then(() => say('Link copied. In Instagram, add a Link sticker and paste it.'))
+          .catch((e) => { if (e?.name !== 'AbortError') { showImage(f); say(''); } });
+      } else {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(f); a.download = 'tftj-story.jpg';
+        document.body.appendChild(a); a.click(); a.remove();
+        say('Story image downloaded. Link copied.');
       }
     });
 
-    root.querySelector('[data-copy]')!.addEventListener('click', async () => {
-      say((await copyLink()) ? 'Link copied.' : url);
+    copyBtn.addEventListener('click', () => {
+      const done = () => { flash(copyBtn, 'Copied ✓'); say('Link copied.'); };
+      if (navigator.clipboard?.writeText) {
+        navigator.clipboard.writeText(url).then(done).catch(() => say(url));
+      } else {
+        const t = document.createElement('textarea'); t.value = url; document.body.appendChild(t);
+        t.select(); const ok = document.execCommand('copy'); t.remove();
+        ok ? done() : say(url);
+      }
     });
   }
 </script>
@@ -148,6 +190,18 @@ const { title, category, cover, url } = Astro.props;
     transition: border-color 0.3s;
   }
   button:hover { border-color: var(--ink); }
+  :global(.story-preview) {
+    position: fixed; inset: 0; z-index: 50;
+    background: rgba(244, 239, 230, 0.97);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 1rem; padding: 1.5rem;
+  }
+  :global(.story-preview img) { max-height: 72vh; width: auto; box-shadow: 0 10px 40px rgba(0,0,0,.15); }
+  :global(.story-preview p) { margin: 0; font-family: var(--serif); font-style: italic; text-align: center; color: var(--ink-soft); }
+  :global(.story-preview button) {
+    font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+    background: none; border: 0; border-bottom: 1px solid var(--ink); padding: 0.3rem 0; color: var(--ink); cursor: pointer;
+  }
   .note {
     flex-basis: 100%;
     margin: 0;
