@@ -18,9 +18,9 @@ When the flowers bloom, the air smells too sweet to just breathe in. Across the 
 Soft pink rice cakes filled with red bean paste and wrapped in a salted cherry leaf. A sweet, floral staple enjoyed across Japan for more than three centuries.
 
 <figure class="pair">
-  <div class="grain"><img src="/images/journal/tasting-the-bloom/sakuramochi-blossom.jpg" alt="Two pink sakuramochi wrapped in cherry leaves on a stone plate beneath cherry blossom" loading="lazy" /></div>
+  <div class="grain"><img src="/images/journal/tasting-the-bloom/cherry-blossom.jpg" alt="Pink cherry blossom on a branch" loading="lazy" /></div>
   <div class="grain"><img src="/images/journal/tasting-the-bloom/sakuramochi-plate.jpg" alt="Rolled pink sakuramochi with salted cherry leaves and dried blossoms on a dark plate" loading="lazy" /></div>
-  <figcaption>Sakuramochi, wrapped in salted cherry leaves.</figcaption>
+  <figcaption>Cherry blossom, and sakuramochi.</figcaption>
 </figure>
 
 ## 02. Candied Violets
@@ -29,9 +29,10 @@ Soft pink rice cakes filled with red bean paste and wrapped in a salted cherry l
 
 Whole purple violets are brushed with syrup, dusted in sugar, and dried into crisp crystals. These sparkling floral jewels have perfumed French confectionery for centuries.
 
-<figure class="narrow">
+<figure class="pair">
+  <div class="grain"><img src="/images/journal/tasting-the-bloom/sweet-violet.jpg" alt="A single sweet violet flower among leaves" loading="lazy" /></div>
   <div class="grain"><img src="/images/journal/tasting-the-bloom/candied-violets.jpg" alt="Sugar-crusted violets drying on a wire rack over baking paper" loading="lazy" /></div>
-  <figcaption>Violets, drying into crystals.</figcaption>
+  <figcaption>Sweet violet, and candied violets.</figcaption>
 </figure>
 
 ## 03. Elderflower Cooler
@@ -53,9 +54,9 @@ Made by steeping wild elderflowers and lemon, this sweet floral syrup is mixed w
 Every autumn, fragrant golden osmanthus blossoms perfume the air across China. Preserved in sweet tea jellies and rice cakes, they capture the fleeting scent of the season.
 
 <figure class="pair">
-  <div class="grain"><img src="/images/journal/tasting-the-bloom/osmanthus-jelly.jpg" alt="Amber osmanthus jellies flecked with golden blossoms on a white plate" loading="lazy" /></div>
+  <div class="grain"><img src="/images/journal/tasting-the-bloom/osmanthus-flowers.jpg" alt="Clusters of small golden osmanthus flowers on a branch" loading="lazy" /></div>
   <div class="grain"><img src="/images/journal/tasting-the-bloom/osmanthus-jelly-rosebuds.jpg" alt="Flower-shaped osmanthus jellies set with rosebuds in a painted dish" loading="lazy" /></div>
-  <figcaption>Osmanthus, set in tea jelly.</figcaption>
+  <figcaption>Osmanthus in bloom, and osmanthus jelly.</figcaption>
 </figure>
 
 ## 05. Kahwa with Saffron
@@ -64,9 +65,10 @@ Every autumn, fragrant golden osmanthus blossoms perfume the air across China. P
 
 Every October, Kashmir's blooming purple crocuses yield fresh crimson saffron threads. Brewed with green cardamom and almonds, this spiced tea warmly welcomes the mountain cold.
 
-<figure class="narrow">
+<figure class="pair">
+  <div class="grain"><img src="/images/journal/tasting-the-bloom/saffron-crocus.jpg" alt="A purple saffron crocus with red saffron threads" loading="lazy" /></div>
   <div class="grain"><img src="/images/journal/tasting-the-bloom/kahwa.jpg" alt="Two engraved brass cups of saffron kahwa with cardamom, cinnamon and rose petals" loading="lazy" /></div>
-  <figcaption>Kahwa, in engraved brass.</figcaption>
+  <figcaption>Saffron crocus, and kahwa.</figcaption>
 </figure>
 
 ## 06. Gulkand
@@ -76,7 +78,9 @@ Every October, Kashmir's blooming purple crocuses yield fresh crimson saffron th
 Fresh Damask rose petals and sugar are slow-cured under the summer sun into a fragrant jam. This cooling, centuries-old preserve brings sweet relief during the year's hottest months.
 
 <figure class="pair">
-  <div class="grain"><img src="/images/journal/tasting-the-bloom/damask-rosebuds.jpg" alt="Dried Damask rosebuds spilling from a copper bowl" loading="lazy" /></div>
+  <div class="grain"><img src="/images/journal/tasting-the-bloom/damask-rose.jpg" alt="Pink Damask roses in bloom" loading="lazy" /></div>
   <div class="grain"><img src="/images/journal/tasting-the-bloom/gulkand.jpg" alt="Gulkand in a marble mortar with nuts, beside a basket of fresh pink roses" loading="lazy" /></div>
-  <figcaption>Damask roses, and gulkand.</figcaption>
+  <figcaption>Damask rose, and gulkand.</figcaption>
 </figure>
+
+<p class="credits">Flower photographs from Wikimedia Commons: cherry blossom by Emma4598 (CC BY-SA 4.0); sweet violet by Ryan Hodnett (CC BY-SA 4.0); osmanthus by KENPEI (CC BY-SA 3.0); saffron crocus by Zeynel Cebeci (CC BY-SA 4.0); Damask rose by Natalka Ukraine (CC BY-SA 4.0).</p>

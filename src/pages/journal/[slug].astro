@@ -179,6 +179,13 @@ const more = [
     text-transform: uppercase;
     color: var(--ink-soft);
   }
+  /* image credits at the end of a post: <p class="credits">…</p> */
+  .prose :global(p.credits) {
+    margin-top: 3.5rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--ink-faint);
+  }
   .prose :global(blockquote) {
     margin: 3rem 0;
     padding: 0;
