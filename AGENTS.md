@@ -91,6 +91,15 @@ Put raw HTML in the Markdown, with a blank line before and after. **Always wrap 
 </figure>
 ```
 
+### Small place/season line under a heading
+
+For list-style posts (e.g. *Tasting the Bloom*), put this right after a `##` heading:
+`<p class="meta">Japan · Spring</p>`
+
+### Pulling images from Canva
+
+When images live in a Canva design, export the slide as a PNG at 2× size, then crop out just the photo area with `sips -c <h> <w> --cropOffset <y> <x>`. Never use slides with text baked into them as images.
+
 ### Quotes
 
 - Short pull quote: `> text`

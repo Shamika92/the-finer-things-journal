@@ -170,6 +170,15 @@ const more = [
     color: var(--ink-soft);
     margin: 2.75rem 0 0.9rem;
   }
+  /* small place/season line under a heading: <p class="meta">Japan · Spring</p> */
+  .prose :global(p.meta) {
+    margin: -0.6rem 0 1.25rem;
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
   .prose :global(blockquote) {
     margin: 3rem 0;
     padding: 0;
