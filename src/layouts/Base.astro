@@ -117,7 +117,34 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [...baseSchema, ...
       <slot />
     </main>
     <Footer />
-    <!-- Cloudflare Web Analytics -->
-    <script is:inline type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "20a49787e2b34e7ca174be1d972518f9"}'></script>
+    <!-- Google Analytics 4 -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-1CW06Q4G07"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1CW06Q4G07');
+
+      // Share button clicks
+      document.addEventListener('click', function (e) {
+        var b = e.target.closest && e.target.closest('[data-story],[data-copy]');
+        if (b) gtag('event', 'share', { method: b.hasAttribute('data-story') ? 'instagram_story' : 'copy_link', page_path: location.pathname });
+      });
+
+      // Reading depth on posts: 25 / 50 / 75 / 100% of the article text
+      (function () {
+        var prose = document.querySelector('.prose');
+        if (!prose) return;
+        var marks = [25, 50, 75, 100], sent = {};
+        function check() {
+          var r = prose.getBoundingClientRect();
+          var pct = Math.min(100, Math.max(0, ((window.innerHeight - r.top) / r.height) * 100));
+          marks.forEach(function (m) {
+            if (pct >= m - (m === 100 ? 3 : 0) && !sent[m]) { sent[m] = 1; gtag('event', 'read_progress', { percent: m, page_path: location.pathname }); }
+          });
+        }
+        window.addEventListener('scroll', check, { passive: true });
+      })();
+    </script>
   </body>
 </html>
