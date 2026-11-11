@@ -53,9 +53,19 @@ const { title, category, cover, url } = Astro.props;
         document.fonts.load('300 92px "Cormorant Garamond"'),
         document.fonts.load('400 30px "Jost"'),
       ]).catch(() => {});
-      const [paper, img, logo, grain] = await Promise.all([
-        loadImg('/textures/paper.jpg'), loadImg(cover), loadImg('/logo-transparent.png'), loadImg('/textures/grain.svg'),
+      const [paper, img, logo] = await Promise.all([
+        loadImg('/textures/paper.jpg'), loadImg(cover), loadImg('/logo-transparent.png'),
       ]);
+      // Film grain drawn in code. (An SVG texture makes Safari refuse to export the canvas.)
+      const grain = document.createElement('canvas');
+      grain.width = grain.height = 256;
+      const gctx = grain.getContext('2d')!;
+      const gd = gctx.createImageData(256, 256);
+      for (let i = 0; i < gd.data.length; i += 4) {
+        const v = 90 + Math.random() * 110;
+        gd.data[i] = gd.data[i + 1] = gd.data[i + 2] = v; gd.data[i + 3] = 255;
+      }
+      gctx.putImageData(gd, 0, 0);
       const W = 1080, H = 1920, c = document.createElement('canvas');
       c.width = W; c.height = H;
       const ctx = c.getContext('2d')!;
@@ -141,7 +151,7 @@ const { title, category, cover, url } = Astro.props;
       navigator.clipboard?.writeText(url).catch(() => {});
       if (!file) {
         say('Preparing your story image… tap again in a moment.');
-        prepare().then(() => say('Ready. Tap “Instagram Story” again.')).catch(() => say('Could not create the story image.'));
+        prepare().then(() => say('Ready. Tap “Instagram Story” again.')).catch((e) => { console.error(e); say('Could not create the story image.'); });
         return;
       }
       const f = file;
