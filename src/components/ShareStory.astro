@@ -145,7 +145,10 @@ const { title, category, cover, url } = Astro.props;
         return;
       }
       const f = file;
-      if (navigator.canShare?.({ files: [f] })) {
+      // Phones and tablets have Instagram in their share sheet; desktops don't,
+      // so there we just download the image (and the link is already copied).
+      const isTouch = window.matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 1;
+      if (isTouch && navigator.canShare?.({ files: [f] })) {
         navigator.share({ files: [f] })
           .then(() => say('Link copied. In Instagram, add a Link sticker and paste it.'))
           .catch((e) => { if (e?.name !== 'AbortError') { showImage(f); say(''); } });
@@ -153,7 +156,7 @@ const { title, category, cover, url } = Astro.props;
         const a = document.createElement('a');
         a.href = URL.createObjectURL(f); a.download = 'tftj-story.jpg';
         document.body.appendChild(a); a.click(); a.remove();
-        say('Story image downloaded. Link copied.');
+        say('Story image downloaded and link copied. To post it, move the image to your phone (AirDrop or email), then add it to your Instagram story.');
       }
     });
 
