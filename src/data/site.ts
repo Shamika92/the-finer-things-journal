@@ -4,10 +4,10 @@
 
 export const SITE = {
   name: 'The Finer Things Journal',
-  tagline: 'An independent journal of culture, film, literature, art & objects.',
+  tagline: 'An independent journal exploring the finer details in culture, film, literature & art.',
   // Used by Google and link previews on the home page (aim for 140–160 characters).
   description:
-    'The Finer Things Journal is an independent journal of culture, film, literature, art & objects: essays, collections and pictures on what is worth our time.',
+    'The Finer Things Journal is an independent journal exploring the finer details in culture, film, literature & art: essays, collections and pictures on what is worth our time.',
   // Shown as the author on articles. Replace with your name if you want a personal byline.
   author: 'The Finer Things Journal',
   locale: 'en_GB',
