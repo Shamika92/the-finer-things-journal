@@ -3,6 +3,7 @@ import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import GrainImage from '../../components/GrainImage.astro';
 import PostCard from '../../components/PostCard.astro';
+import LikeButton from '../../components/LikeButton.astro';
 import ShareStory from '../../components/ShareStory.astro';
 import { SITE, categoryLabel } from '../../data/site';
 import { getPosts, formatDate, readingTime } from '../../data/posts';
@@ -100,6 +101,8 @@ const more = [
     )}
 
     <p class="end wrap" aria-hidden="true">❦</p>
+
+    <LikeButton />
 
     <ShareStory title={title} category={categoryLabel(category)} cover={cover} url={url} />
   </article>
