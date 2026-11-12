@@ -154,6 +154,20 @@ C="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
 The sitemap, RSS feed and `robots.txt` regenerate on every build. Google Search Console is already set up, so no action is needed for new posts.
 
+## Learned conventions (added later)
+
+- **Added research:** when the owner asks for extra facts, add 2-4 lines per section, written as natural, interesting facts (where it is used, what happens to form it). Avoid an academic tone. Their own lines stay verbatim.
+- **Images that aren't the owner's:** credit them. Use `<p class="credits">` at the end: photographer and licence for each Wikimedia image used, and a line saying the rest are not ours, with links to similar images. Check the licence on Wikimedia Commons before use. Wikimedia rate-limits (429), so add sleeps and retries.
+- **Image quality:** a pair is cropped to 4:5, so give each image about 1000x1250. Cover: landscape, at least 1600px wide. Never upscale. Replace soft or low-resolution photos with licensed sharp ones and credit them.
+- **Body text** is 1.3rem (set in `src/pages/journal/[slug].astro`). Headings and captions are separate.
+- **Pull quote:** one `>` quote near the top, in the owner's wording if given.
+- **Tagline and About:** the tagline is in `src/data/site.ts` and shows in 5 places. About text is in `src/pages/about.astro`. The owner wants it to stay open to bigger subjects (psychology, ideas), not only small objects. Don't change the wording without asking.
+- **Analytics:** Google Analytics 4 (ID in `src/layouts/Base.astro`) tracks views, `read_progress` (25/50/75/100%), `share` and `like` events. Cloudflare Web Analytics is also on via automatic setup (no code). Don't add a second tracker.
+- **Like and Share:** `src/components/LikeButton.astro` (heart, no public count, event goes to GA) and `ShareStory.astro` (Instagram Story image). The story canvas must not draw SVGs (Safari blocks the export), so the grain is generated in code.
+- **Not yet done, by choice:** email signup (revisit at 10-15 posts), poems section, named bylines on posts. Don't add these unprompted.
+
+---
+
 ## Don't
 
 - Force-push, or rewrite git history.
