@@ -7,9 +7,10 @@ interface Props {
   focus?: string;      // CSS object-position: what stays in frame when cropped
   eager?: boolean;
   class?: string;
+  grain?: boolean;     // false removes the grain overlay (used for covers)
 }
-const { src, alt = '', ratio = '4 / 5', focus = 'center', eager = false, class: className } = Astro.props;
+const { src, alt = '', ratio = '4 / 5', focus = 'center', eager = false, class: className, grain = true } = Astro.props;
 ---
-<div class:list={['grain', className]} style={`aspect-ratio: ${ratio}`}>
+<div class:list={['grain', { 'no-grain': !grain }, className]} style={`aspect-ratio: ${ratio}`}>
   <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" style={`object-position: ${focus}`} />
 </div>

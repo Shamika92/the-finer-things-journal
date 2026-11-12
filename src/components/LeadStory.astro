@@ -11,7 +11,7 @@ const { title, dek, category, date, cover, coverAlt, coverFocus } = post.data;
 ---
 <article class="lead reveal" data-category={category}>
   <a href={`/journal/${post.id}`}>
-    <GrainImage src={cover} alt={coverAlt} ratio="3 / 2" focus={coverFocus} eager />
+    <GrainImage src={cover} alt={coverAlt} ratio="3 / 2" focus={coverFocus} eager grain={false} />
     <div class="text">
       <span class="eyebrow kicker">Latest</span>
       <h2>{title}</h2>

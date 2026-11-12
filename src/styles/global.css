@@ -110,6 +110,9 @@ a { color: inherit; text-decoration: none; }
   opacity: 0.55;
 }
 
+/* covers: no grain overlay */
+.grain.no-grain::after { display: none; }
+
 /* subtle vignette */
 .grain::before {
   content: '';
