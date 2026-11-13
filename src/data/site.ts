@@ -13,6 +13,7 @@ export const SITE = {
   locale: 'en_GB',
   // Shared when a page has no cover photo of its own (must be JPG/PNG, 1200×630).
   defaultImage: '/og-default.jpg',
+  email: 'thefinerthingsjournal@gmail.com',
   instagram: {
     handle: '@thefinerthingsjournal',
     url: 'https://www.instagram.com/thefinerthingsjournal/',
@@ -22,12 +23,12 @@ export const SITE = {
 // The categories ("types") used by the filter.
 // To add a new one: add an entry here, then use its `id` in a post's frontmatter.
 export const CATEGORIES = [
-  { id: 'film', label: 'Film' },
   { id: 'literature', label: 'Literature' },
   { id: 'art', label: 'Art' },
   { id: 'objects', label: 'Objects' },
   { id: 'culture', label: 'Culture' },
   { id: 'life', label: 'Life' },
+  { id: 'film', label: 'Film' },
 ] as const;
 
 export type CategoryId = (typeof CATEGORIES)[number]['id'];

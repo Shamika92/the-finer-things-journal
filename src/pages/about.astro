@@ -44,6 +44,9 @@ import { SITE, CATEGORIES } from '../data/site';
       <a class="cta eyebrow" href={SITE.instagram.url} target="_blank" rel="noopener">
         {SITE.instagram.handle} →
       </a>
+      <p class="mail">
+        Or write to us at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      </p>
 
       <p class="signoff eyebrow">Edited by Shamika K</p>
     </div>
@@ -89,6 +92,9 @@ import { SITE, CATEGORIES } from '../data/site';
     margin: 2.5rem 0 0.75rem;
   }
   .text p.signoff { margin: 3.5rem 0 0; color: var(--ink-faint); font-family: var(--sans); font-size: 0.68rem; line-height: 1.7; }
+  .text p.mail { margin: 1.75rem 0 0; font-size: clamp(1.15rem, 2vw, 1.3rem); }
+  .mail a { border-bottom: 1px solid var(--rule); transition: border-color 0.3s; word-break: break-all; }
+  .mail a:hover { border-color: var(--ink); }
   .cta {
     display: inline-block;
     color: var(--ink);
