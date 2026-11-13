@@ -6,6 +6,7 @@ category: culture
 date: 2026-11-04
 cover: /images/journal/tasting-the-bloom/cover-wide.jpg
 coverAlt: "Flatbreads topped with purple spread, roses, pansies and microgreens, scattered with pink petals"
+keywords: ["Seasons", "Fragrance", "Transience"]
 ---
 
 When the flowers bloom, the air smells too sweet to just breathe in.

@@ -22,6 +22,7 @@ const journal = defineCollection({
     gallery: z
       .array(z.object({ src: z.string(), alt: z.string().default(''), caption: z.string().optional() }))
       .default([]),
+    keywords: z.array(z.string()).default([]), // 2-4 index words that earn their place (see AGENTS.md)
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),        // true = hidden from the site
   }),

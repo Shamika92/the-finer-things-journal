@@ -6,6 +6,7 @@ category: objects
 date: 2026-10-31
 cover: /images/journal/the-many-lives-of-vermilion/cover-wide.jpg
 coverAlt: "A stone path curving beneath rows of vermilion torii gates at Fushimi Inari Taisha, with a hanging lantern"
+keywords: ["Colour", "Alchemy", "Thresholds", "Ritual"]
 ---
 
 Few colours carry the physical weight and psychic charge of vermilion. Neither purely scarlet nor orange, it is an incandescent, blood-warm red that refuses to recede into a background. Across continents and millennia, human hands have dug into the dark belly of the earth to unearth it, risking madness and toxicity to paint what words could not reach: the exact line where mortality brushes against the divine.

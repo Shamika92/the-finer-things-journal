@@ -57,6 +57,7 @@ date: 2026-11-15            # publish date (today unless the owner gives one)
 cover: /images/journal/<slug>/cover.jpg
 coverAlt: "What the cover image shows"
 coverShape: portrait        # only for tall covers; omit for landscape
+keywords: ["Transience", "Decay", "Patterns"]   # 2-4 index words (see "The Index" below)
 # updated: 2026-12-01       # if the post is revised later
 # draft: true               # hides the post from the site
 ---
@@ -153,6 +154,22 @@ C="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 | Logo (transparent) / share image | `public/logo-transparent.png` / `public/og-default.jpg` |
 
 The sitemap, RSS feed and `robots.txt` regenerate on every build. Google Search Console is already set up, so no action is needed for new posts.
+
+## The Index (keywords)
+
+Every post has 2-4 `keywords` in its front matter (3 is typical). They feed the **Index** page (`/the-index`, floating words) and one page per word (`/the-index/<word>`), and show at the end of each post. The Index must stay meaningful, so **a word has to earn its place**:
+
+- It is a **central idea** of the post, not an incidental detail or plot point.
+- It is a **concept** (Decay, Memory, Thresholds, Ritual), not a thing, place, medium or genre (not Lemon, Kyoto, Film, Still life).
+- It is a **thread that could plausibly link future posts**.
+- It is **not generic** (avoid Time, Life, Art, Beauty, Culture, History).
+- **Reuse existing words** where they genuinely fit. Check the list first: `grep -h '^keywords' src/content/journal/*.md`. Add a new word only for a real new idea.
+- When unsure, use fewer words. Review the whole list if it passes about 30 words.
+- Capitals don't matter for matching. Use a capital first letter (e.g. "Still life").
+- Pick words from the text itself, and tell the owner which words were chosen and why.
+- Code: `src/data/keywords.ts`, `src/pages/the-index/`.
+
+---
 
 ## Learned conventions (added later)
 

@@ -6,6 +6,7 @@ category: life
 date: 2026-11-11
 cover: /images/journal/the-art-nature-leaves-behind/cover.jpg
 coverAlt: "A skeleton leaf, its fine network of dark veins lit against a pale background"
+keywords: ["Transience", "Decay", "Patterns"]
 ---
 
 It is humbling to see what nature leaves behind after a living thing has reached the end of its life.

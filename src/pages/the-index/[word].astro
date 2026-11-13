@@ -1,0 +1,63 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getIndex } from '../../data/keywords';
+
+export async function getStaticPaths() {
+  const words = await getIndex();
+  return words.map((w) => ({
+    params: { word: w.slug },
+    props: {
+      entry: w,
+      // other words that share an article with this one
+      related: words
+        .filter((o) => o.slug !== w.slug && o.posts.some((p) => w.posts.includes(p)))
+        .map((o) => ({ slug: o.slug, label: o.label })),
+    },
+  }));
+}
+
+const { entry, related } = Astro.props;
+const n = entry.posts.length;
+---
+<Base
+  title={entry.label}
+  description={`${n} ${n === 1 ? 'article' : 'articles'} in The Finer Things Journal on ${entry.label.toLowerCase()}.`}
+>
+  <section class="page-head wrap reveal">
+    <a class="eyebrow" href="/the-index">Index</a>
+    <h1><em>{entry.label}</em></h1>
+    <p>{n} {n === 1 ? 'article' : 'articles'}</p>
+  </section>
+
+  <section class="wrap grid">
+    {entry.posts.map((p, i) => <PostCard post={p} index={i} />)}
+  </section>
+
+  {related.length > 0 && (
+    <section class="wrap related">
+      <hr class="rule" />
+      <span class="eyebrow">Related words</span>
+      <p>
+        {related.map((r, i) => (
+          <>{i > 0 && <span class="sep" aria-hidden="true"> · </span>}<a href={`/the-index/${r.slug}`}>{r.label}</a></>
+        ))}
+      </p>
+    </section>
+  )}
+</Base>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    gap: 3rem clamp(1.5rem, 3.5vw, 3rem);
+    max-width: 1000px;
+  }
+  .related { max-width: 1000px; margin-top: clamp(3rem, 7vw, 5rem); text-align: center; }
+  .related .eyebrow { display: block; margin: 2.5rem 0 1rem; }
+  .related p { margin: 0; font-family: var(--serif); font-style: italic; font-size: 1.4rem; }
+  .related a { border-bottom: 1px solid var(--rule); transition: border-color 0.3s; }
+  .related a:hover { border-color: var(--ink); }
+  .sep { color: var(--ink-faint); }
+</style>

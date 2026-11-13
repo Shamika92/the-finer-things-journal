@@ -1,0 +1,94 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getIndex } from '../../data/keywords';
+
+const words = await getIndex();
+
+// A stable pseudo-random number from a word, so the layout is the same on every build.
+const rand = (s: string, salt: number) => {
+  let h = 2166136261 ^ salt;
+  for (const c of s) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); }
+  return ((h >>> 0) % 10000) / 10000;
+};
+
+// Spread the words over a grid, each jittered inside its own cell, so they never pile up.
+// Two layouts: 4 columns on wide screens, 2 on phones (chosen in CSS).
+const order = [...words].sort((a, b) => rand(a.slug, 1) - rand(b.slug, 1));
+const rowsFor = (cols: number) => Math.max(1, Math.ceil(words.length / cols));
+const rows4 = rowsFor(4);
+const rows2 = rowsFor(2);
+const cell = (i: number, cols: number, rows: number, slug: string, spread: number) => ({
+  x: ((i % cols) + 0.04 + rand(slug, 2) * spread) / cols * 100,
+  y: (Math.floor(i / cols) + 0.15 + rand(slug, 3) * 0.6) / rows * 100,
+});
+const placed = order.map((w, i) => {
+  const n = w.posts.length;
+  const d = cell(i, 4, rows4, w.slug, 0.55);
+  const m = cell(i, 2, rows2, w.slug, 0.28);
+  return {
+    ...w,
+    x4: d.x, y4: d.y, x2: m.x, y2: m.y,
+    size: 1.15 + Math.min(n - 1, 3) * 0.4,                // more articles, larger word
+    dur: 6 + rand(w.slug, 4) * 6,
+    delay: -rand(w.slug, 5) * 12,
+    dx: (rand(w.slug, 6) - 0.5) * 70,
+    dy: (rand(w.slug, 7) - 0.5) * 50,
+  };
+});
+---
+<Base title="Index" description="An index of the words that run through The Finer Things Journal. Follow a word from one article to the next.">
+  <section class="page-head wrap reveal">
+    <span class="eyebrow">Index</span>
+    <h1>Follow a <em>word</em></h1>
+    <p>Everything eventually overlaps.</p>
+  </section>
+
+  <section class="wrap reveal" style="animation-delay:.15s" aria-label="Index words">
+    <div class="stage" style={`--rows4:${rows4};--rows2:${rows2}`}>
+      {placed.map((w) => (
+        <a
+          href={`/the-index/${w.slug}`}
+          style={`--x4:${w.x4}%;--y4:${w.y4}%;--x2:${w.x2}%;--y2:${w.y2}%;font-size:${w.size}rem;--dur:${w.dur}s;--delay:${w.delay}s;--dx:${w.dx}px;--dy:${w.dy}px`}
+        >{w.label}</a>
+      ))}
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .stage {
+    position: relative;
+    height: calc(var(--rows4) * 6.4rem + 6rem);
+    min-height: 26rem;
+    max-width: 1000px;
+    margin: 0 auto clamp(3rem, 6vw, 5rem);
+  }
+  .stage a {
+    position: absolute;
+    left: var(--x4);
+    top: var(--y4);
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    white-space: nowrap;
+    color: var(--ink);
+    padding: 0.35rem 0.5rem;
+    border-bottom: 1px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
+    animation: drift var(--dur) ease-in-out var(--delay) infinite alternate;
+  }
+  .stage a:hover { color: var(--accent); border-color: var(--accent); animation-play-state: paused; }
+  @keyframes drift {
+    from { transform: translate(calc(var(--dx) * var(--k, 1) * -1), calc(var(--dy) * var(--k, 1) * -1)); }
+    to   { transform: translate(calc(var(--dx) * var(--k, 1)), calc(var(--dy) * var(--k, 1))); }
+  }
+  @media (prefers-reduced-motion: reduce) { .stage a { animation: none; } }
+  @media (max-width: 600px) {
+    .stage { height: calc(var(--rows2) * 5rem + 3rem); min-height: 0; }
+    .stage a { left: var(--x2); top: var(--y2); font-size: 1.05rem !important; --k: 0.6; }
+  }
+
+</style>

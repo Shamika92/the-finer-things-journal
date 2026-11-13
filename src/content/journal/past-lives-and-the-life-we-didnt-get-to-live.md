@@ -5,6 +5,7 @@ category: film
 date: 2026-09-24
 cover: /images/journal/past-lives-and-the-life-we-didnt-get-to-live/cover.jpg
 coverAlt: "Nora, Arthur and Hae Sung walking together at night in New York, a still from Past Lives"
+keywords: ["Longing", "Memory", "Identity"]
 ---
 
 I believe writing and cinema are subtle social levers.
