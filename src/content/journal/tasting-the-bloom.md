@@ -85,4 +85,4 @@ Fresh Damask rose petals and sugar are slow-cured under the summer sun into a fr
   <figcaption>Damask rose, and gulkand.</figcaption>
 </figure>
 
-<p class="credits">Flower photographs from Wikimedia Commons: cherry blossom by Emma4598 (CC BY-SA 4.0); sweet violet by Ryan Hodnett (CC BY-SA 4.0); saffron crocus by Zeynel Cebeci (CC BY-SA 4.0); Damask rose by Natalka Ukraine (CC BY-SA 4.0).</p>
+<p class="credits">Cover photograph via <a href="https://www.pexels.com/photo/7526033/">Pexels</a>. Flower photographs from Wikimedia Commons: cherry blossom by Emma4598 (CC BY-SA 4.0); sweet violet by Ryan Hodnett (CC BY-SA 4.0); saffron crocus by Zeynel Cebeci (CC BY-SA 4.0); Damask rose by Natalka Ukraine (CC BY-SA 4.0).</p>
