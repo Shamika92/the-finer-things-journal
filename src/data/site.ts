@@ -23,11 +23,10 @@ export const SITE = {
 // The categories ("types") used by the filter.
 // To add a new one: add an entry here, then use its `id` in a post's frontmatter.
 export const CATEGORIES = [
-  { id: 'literature', label: 'Literature' },
+  { id: 'culture', label: 'Culture' },
   { id: 'art', label: 'Art' },
   { id: 'objects', label: 'Objects' },
-  { id: 'culture', label: 'Culture' },
-  { id: 'life', label: 'Life' },
+  { id: 'literature', label: 'Literature' },
   { id: 'film', label: 'Film' },
 ] as const;
 

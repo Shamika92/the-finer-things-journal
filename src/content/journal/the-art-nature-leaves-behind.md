@@ -2,7 +2,7 @@
 title: "The Art Nature Leaves Behind"
 dek: "Beautiful forms revealed by time, change & decay"
 seoDescription: "Eight natural skeletons and seed pods: sea urchin, cholla cactus, honesty, Chinese lantern, sand dollar, lotus, driftwood and skeleton leaf, and how each pattern forms."
-category: life
+category: art
 date: 2026-11-11
 cover: /images/journal/the-art-nature-leaves-behind/cover.jpg
 coverAlt: "A skeleton leaf, its fine network of dark veins lit against a pale background"
