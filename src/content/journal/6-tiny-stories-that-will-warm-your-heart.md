@@ -6,7 +6,6 @@ category: literature
 date: 2026-11-13
 cover: /images/journal/6-tiny-stories-that-will-warm-your-heart/cover.jpg
 coverAlt: "An oil painting of a woman in a pale dress sitting on a sunlit forest path, looking down at flowers in her hands"
-coverShape: portrait
 coverFocus: center 75%
 keywords: ["Childhood", "Transience", "Nostalgia"]
 ---
