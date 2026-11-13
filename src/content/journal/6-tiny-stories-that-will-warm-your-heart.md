@@ -1,6 +1,6 @@
 ---
 title: "6 Tiny Stories That Will Warm Your Heart"
-dek: "Simple in plot, they age remarkably well"
+dek: "Childhood classics that grow up with us"
 seoDescription: "Six short classics to read again as an adult: O. Henry, Tagore, Oscar Wilde and Hans Christian Andersen, with free links to read each one online."
 category: literature
 date: 2026-11-13
@@ -8,7 +8,7 @@ cover: /images/journal/6-tiny-stories-that-will-warm-your-heart/cover.jpg
 coverAlt: "An oil painting of a woman in a pale dress sitting on a sunlit forest path, looking down at flowers in her hands"
 coverShape: portrait
 coverFocus: center 75%
-keywords: ["Transience", "Nostalgia", "Sacrifice"]
+keywords: ["Childhood", "Transience", "Nostalgia"]
 ---
 
 If you spend time around kids, watching their films and reading their stories, you cannot help but feel awe at how well they balance sadness, grief, and hope.
