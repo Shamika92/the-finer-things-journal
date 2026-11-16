@@ -4,9 +4,9 @@ dek: "Childhood classics that grow up with us"
 seoDescription: "Six short classics to read again as an adult: O. Henry, Tagore, Oscar Wilde and Hans Christian Andersen, with free links to read each one online."
 category: literature
 date: 2026-11-13
-cover: /images/journal/6-tiny-stories-that-will-warm-your-heart/cover.jpg
-coverAlt: "An oil painting of a woman in a pale dress sitting on a sunlit forest path, looking down at flowers in her hands"
-coverFocus: center 75%
+cover: /images/journal/6-tiny-stories-that-will-warm-your-heart/cover-reading.jpg
+coverAlt: "A painting of a woman in a pale satin dress reclining on a green sofa and reading a book, a golden borzoi dog asleep at her feet"
+coverFocus: center 35%
 keywords: ["Childhood", "Transience", "Nostalgia"]
 ---
 
