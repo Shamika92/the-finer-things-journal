@@ -6,7 +6,7 @@ category: culture
 date: 2026-11-16
 cover: /images/journal/the-finer-edit-november-2026/cover.jpg
 coverAlt: "Four paintings and a display of chrysanthemum dolls laid out on a dark green background"
-keywords: ["Seasons", "Transience"]
+keywords: ["Seasons", "November", "Craft"]
 ---
 
 <div class="edition band">
