@@ -4,8 +4,8 @@ dek: "A celebration of seasonal blooms around the world."
 seoDescription: "Six seasonal flower foods from around the world: Japanese sakuramochi, French candied violets, British elderflower cooler, Chinese osmanthus jelly, Kashmiri saffron kahwa and Indian gulkand."
 category: culture
 date: 2026-11-04
-cover: /images/journal/tasting-the-bloom/cover-plate.jpg
-coverAlt: "A white plate on a yellow background, holding yellow wildflowers, white blossoms and green leaves"
+cover: /images/journal/tasting-the-bloom/cover-art.jpg
+coverAlt: "Watercolour illustrations of flowered plates, a pink bird, a bowl of grapes and carnations on a dusty blush background"
 keywords: ["Seasons", "Fragrance", "Transience"]
 ---
 
@@ -85,4 +85,4 @@ Fresh Damask rose petals and sugar are slow-cured under the summer sun into a fr
   <figcaption>Damask rose, and gulkand.</figcaption>
 </figure>
 
-<p class="credits">Cover photograph via <a href="https://www.pexels.com/photo/7526033/">Pexels</a>. Flower photographs from Wikimedia Commons: cherry blossom by Emma4598 (CC BY-SA 4.0); sweet violet by Ryan Hodnett (CC BY-SA 4.0); saffron crocus by Zeynel Cebeci (CC BY-SA 4.0); Damask rose by Natalka Ukraine (CC BY-SA 4.0).</p>
+<p class="credits">Flower photographs from Wikimedia Commons: cherry blossom by Emma4598 (CC BY-SA 4.0); sweet violet by Ryan Hodnett (CC BY-SA 4.0); saffron crocus by Zeynel Cebeci (CC BY-SA 4.0); Damask rose by Natalka Ukraine (CC BY-SA 4.0).</p>
