@@ -6,7 +6,7 @@ category: culture
 date: 2026-11-20
 cover: /images/journal/6-cups-of-winter-around-the-world/sujeonggwa.jpg
 coverAlt: "A dark bowl of sujeonggwa, a Korean cinnamon punch, with dried persimmons and pine nuts on a wooden tray with cinnamon sticks"
-keywords: ["Seasons", "Ritual", "Comfort"]
+keywords: ["Seasons", "Winter", "Ritual", "Comfort"]
 ---
 
 <blockquote class="poem">
@@ -37,11 +37,11 @@ A thick, creamy milk drink traditionally made with flour from orchid roots and d
 
 <p class="meta">Japan</p>
 
-<figure class="narrow">
+<figure>
   <div class="grain"><img src="/images/journal/6-cups-of-winter-around-the-world/amazake.jpg" alt="A dark ceramic cup of cloudy white amazake beside a woven basket of rice" loading="lazy" /></div>
 </figure>
 
-Amazake (literally “sweet sake”) is a traditional Japanese fermented rice drink with a thick, porridge-like consistency. In the Edo period it was a summer drink, sold cold by street vendors to beat the heat, and its name even became a summer word in haiku. Today it is poured warm at shrines on New Year’s Eve.
+Amazake is a traditional Japanese fermented rice drink with a thick, porridge-like consistency. In the Edo period it was a summer drink, sold cold by street vendors to beat the heat, and its name even became a summer word in haiku. Today it is poured warm at shrines on New Year’s Eve.
 
 *Taste: Smooth, sweet, and mildly nutty*
 
