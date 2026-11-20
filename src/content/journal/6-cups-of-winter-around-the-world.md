@@ -4,8 +4,8 @@ dek: "Warming drinks from six corners of the world"
 seoDescription: "Six warming winter drinks from around the world: Turkish salep, Japanese amazake, Mexican ponche navideño, Kashmiri noon chai, Korean sujeonggwa and Turin’s bicerin."
 category: culture
 date: 2026-11-20
-cover: /images/journal/6-cups-of-winter-around-the-world/sujeonggwa.jpg
-coverAlt: "A dark bowl of sujeonggwa, a Korean cinnamon punch, with dried persimmons and pine nuts on a wooden tray with cinnamon sticks"
+cover: /images/journal/6-cups-of-winter-around-the-world/cover-art.jpg
+coverAlt: "Watercolour illustrations of warming winter drinks: chai, mulled wine, spiced apple tea, ponche, coffee and blue-and-white teacups, on a warm beige background"
 keywords: ["Seasons", "Winter", "Ritual", "Comfort"]
 ---
 
