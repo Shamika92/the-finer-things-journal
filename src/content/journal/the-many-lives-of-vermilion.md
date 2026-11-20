@@ -1,6 +1,6 @@
 ---
 title: "The Many Lives of Vermilion"
-dek: "One Colour, Centuries of Meaning."
+dek: "One colour, centuries of meaning, from cinnabar to sindoor"
 seoDescription: "Vermilion across cultures: cinnabar mined from poison and stone, Fushimi Inari's torii gates, Chinese lacquer and alchemy, Titian's Bacchus and Ariadne, and sindoor in India."
 category: objects
 date: 2026-10-31

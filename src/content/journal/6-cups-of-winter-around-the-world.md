@@ -1,6 +1,6 @@
 ---
 title: "6 Cups of Winter Around the World"
-dek: "Warming drinks from six corners of the world"
+dek: "Six warming winter drinks from Turkey, Japan, Mexico, Kashmir, Korea and Italy"
 seoDescription: "Six warming winter drinks from around the world: Turkish salep, Japanese amazake, Mexican ponche navideño, Kashmiri noon chai, Korean sujeonggwa and Turin’s bicerin."
 category: culture
 date: 2026-11-20

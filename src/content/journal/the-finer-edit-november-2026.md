@@ -1,6 +1,6 @@
 ---
-title: "The Finer Edit: November 2026"
-dek: "A seasonal cultural edition to savour."
+title: "THE FINER EDIT: November 2026"
+dek: "A seasonal cultural edition: food, art, craft, scent, film and books to savour"
 seoDescription: "A seasonal cultural edition for November 2026: Korean gotgam, Tokyo's chrysanthemum dolls, Kutch dhabla shawls, Art Mumbai, parijat attar, a film and a novel."
 category: culture
 date: 2026-11-16

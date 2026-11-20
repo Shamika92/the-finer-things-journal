@@ -1,6 +1,6 @@
 ---
 title: "Tasting the Bloom"
-dek: "A celebration of seasonal blooms around the world."
+dek: "A celebration of seasonal edible blooms from around the world"
 seoDescription: "Six seasonal flower foods from around the world: Japanese sakuramochi, French candied violets, British elderflower cooler, Chinese osmanthus jelly, Kashmiri saffron kahwa and Indian gulkand."
 category: culture
 date: 2026-11-04

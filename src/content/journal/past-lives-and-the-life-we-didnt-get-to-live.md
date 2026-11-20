@@ -1,6 +1,7 @@
 ---
 title: "Past Lives, and the life we didn’t get to live"
-dek: "On Celine Song’s Past Lives, and the two maybes it leaves us with."
+dek: "On Celine Song’s Past Lives, and the two maybes it leaves us with"
+seoDescription: "An essay on Celine Song’s Past Lives: Nora, Hae Sung and Arthur, and the two maybes the film leaves us with, romantic and the life she could have lived."
 category: film
 date: 2026-09-24
 cover: /images/journal/past-lives-and-the-life-we-didnt-get-to-live/cover.jpg
