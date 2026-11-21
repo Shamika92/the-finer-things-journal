@@ -271,6 +271,28 @@ const more = [
     color: var(--ink-soft);
   }
   .prose :global(blockquote.poem cite em) { font-style: normal; }
+  /* Smaller, left-aligned quote: <blockquote class="quiet"><p>…</p></blockquote> */
+  .prose :global(blockquote.quiet) {
+    text-align: left;
+    margin: 2.5rem 0;
+    font-size: clamp(1.25rem, 2.4vw, 1.5rem);
+    line-height: 1.5;
+  }
+  .prose :global(blockquote.quiet + blockquote.quiet) { margin-top: 0; }
+  .prose :global(blockquote.quiet:has(+ blockquote.quiet)) { margin-bottom: 1.6rem; }
+  /* Poems set side by side in a list: same width and left edge, larger readable label */
+  .prose :global(blockquote.poem.set) { width: min(100%, 31rem); margin: 3rem auto; }
+  .prose :global(blockquote.poem.set cite) {
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: none;
+    color: var(--ink);
+    margin: 0 0 1.1rem;
+  }
+  /* Screenshot blended into the paper: warm tint, white becomes paper colour */
+  .prose :global(figure.blend img) { mix-blend-mode: multiply; }
+  .prose :global(figure.warm img) { filter: sepia(0.45) saturate(0.85) contrast(0.95); mix-blend-mode: multiply; }
   .prose :global(ul), .prose :global(ol) { padding-left: 1.2rem; margin: 0 0 1.5rem; }
 
   .gallery {
