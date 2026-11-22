@@ -78,7 +78,7 @@ const more = [
       <p class="eyebrow byline">
         <time datetime={date.toISOString()}>{formatDate(date)}</time>
         <span aria-hidden="true">·</span>
-        {readingTime(post.body)} min read
+        {post.data.readTime ?? readingTime(post.body)} min read
       </p>
     </header>
 
@@ -291,7 +291,7 @@ const more = [
     margin: 0 0 1.1rem;
   }
   /* Screenshot blended into the paper: warm tint, white becomes paper colour */
-  .prose :global(figure.blend img) { mix-blend-mode: multiply; }
+  .prose :global(figure.chart img) { display: block; width: 100%; height: auto; }
   .prose :global(figure.warm img) { filter: sepia(0.45) saturate(0.85) contrast(0.95); mix-blend-mode: multiply; }
   .prose :global(ul), .prose :global(ol) { padding-left: 1.2rem; margin: 0 0 1.5rem; }
 

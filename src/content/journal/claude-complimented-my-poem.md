@@ -8,6 +8,7 @@ cover: /images/journal/claude-complimented-my-poem/cover.jpg
 coverAlt: "A painting of a woman in a golden dress and a kneeling man in a grey cloak beside a fountain, with handwritten lines and a red starburst drawn over it"
 coverFocus: center 35%
 keywords: ["Poetry", "AI", "Emotions"]
+readTime: 9                 # reading time override (minutes)
 ---
 
 One afternoon, I was trying my hand at poetry just as a hobby and wrote a little piece about a curtain, mostly because it was the first random object sitting right in front of me.
@@ -29,11 +30,15 @@ Slightly offended, I decided to justify myself by overexplaining, trying to get 
 
 And as expected, its tone shifted. Claude came back with a warm, perceptive response that made me feel really understood.
 
-Which left me even more confused: did Claude understand my poem better the second time, or had I simply told it what to feel? If it could articulate emotion so convincingly when prompted, I wondered what kind of poem it would write on its own. So I gave it, and two other AIs, the exact same prompt to write about a Curtain.
+Which left me even more confused: did Claude understand my poem better the second time, or had I simply told it what to feel? If it could articulate emotion so convincingly when prompted, I wondered what kind of poem it would write on its own. So, as a backend developer and out of curiosity, I gave it, and two other AIs, the exact same prompt to write about a Curtain.
 
 ## What happens when a writer hasn’t lived?
 
-Across many cultures and centuries, people have reached for poetry when a feeling is too large to say plainly. People read poems when in love and in ache, in weddings and funerals. We write them after death, at births, at the end of things.
+Across many cultures and centuries, people have reached for poetry when a feeling is too large to say plainly.
+
+<blockquote class="quiet">
+<p>People read poems when in love and in ache, in weddings and funerals. We write them after death, at births, at the end of things.</p>
+</blockquote>
 
 A poem works by leaving things out. It gives you a few lines and a lot of space, and you fill that space with your own life. Two people can read the same four lines and feel different things, because each carries a different memory to the gaps. Literary critics have argued for decades that a poem’s meaning is finished by its reader, not its writer.
 
@@ -57,10 +62,10 @@ Researchers at Anthropic recently looked inside Claude to see how it does that. 
 </figure>
 
 <blockquote class="quiet">
-<p>Imagine the model has read so much human writing that it has sorted feelings onto shelves.</p>
+<p>To make it simple, let’s imagine the model has read so much human writing that it has sorted feelings onto shelves.</p>
 </blockquote>
 
-From enormous amounts of language, it has learned recurring patterns around grief, fear, tenderness and other feelings: “empty chair”, “last time”, “still”. Fear has its own words, and so does tenderness. When a new message arrives, the model notices which shelf those words belong to. Show it a message sent by someone who is sad, and it recognises the “loving” shelf before it replies.
+From enormous amounts of language, it has learned recurring patterns around grief, fear, tenderness and other feelings: “empty chair”, “last time”, “still”. Fear has its own words, and so does tenderness. When a new message arrives, the model notices which shelf those words belong to.
 
 <figure>
   <div class="grain"><img src="/images/journal/claude-complimented-my-poem/emotion-shelves.jpg" alt="A wooden shelf of twelve compartments, each labelled with a feeling (Grief, Love, Tenderness, Fear, Hope, Anger, Nostalgia, Loneliness, Joy, Calm, Curiosity, Awe) and three words that belong to it" loading="lazy" /></div>
@@ -112,7 +117,7 @@ And holds the warmth when night is here.</p>
 
 ## So how do these poems rate?
 
-Look at those three attempts next to mine, and two very different strategies emerge.
+Read those three attempts next to mine, and notice how differently they go about it.
 
 ChatGPT and Gemini did what most people expect a computer to do: they went with neat, predictable rhymes and stock poetic scenery, breezes, trees, sunlit hours, and a cheerful cherry-blossom emoji. Claude took a different route; it skipped the rhymes altogether and built emotion out of physical facts.
 
@@ -136,8 +141,8 @@ The short answer is yes; there is a profound difference, even if it doesn’t al
 
 When Anthropic’s researchers traced those 171 emotion vectors inside Claude, they found that the model naturally grouped feelings the same way human psychology does, placing joy near excitement, and grief close to shame. Computer scientists call these “functional emotions” because they genuinely steer what the model does next.
 
-<figure class="blend">
-  <div class="grain"><img src="/images/journal/claude-complimented-my-poem/emotion-map.jpg" alt="A chart with axes from more negative to more positive and from more calm to more excited, placing Joy and Excitement top right, Love and Calm bottom right, Fear and Sadness top left, Anger and Disgust bottom left" loading="lazy" /></div>
+<figure class="chart">
+  <img src="/images/journal/claude-complimented-my-poem/emotion-map.webp" alt="A chart with axes from more negative to more positive and from more calm to more excited, placing Joy and Excitement top right, Love and Calm bottom right, Fear and Sadness top left, Anger and Disgust bottom left" loading="lazy" />
   <figcaption>A simplified illustration of how feelings group by mood and energy.</figcaption>
 </figure>
 
@@ -186,5 +191,12 @@ Machines can supply all the fluency, rhythm, and symmetry we want, but we never 
 <blockquote class="quiet">
 <p>An AI can trace every contour of the human emotional landscape from the outside, yet without a body that ages or a memory that aches, it can never cross that windowpane, leaving the actual living, and the need to make sense of it, entirely to us.</p>
 </blockquote>
+
+<p class="credits">Sources<br />
+Anthropic (2026). <a href="https://anthropic.com/research/emotion-concepts-function" target="_blank" rel="noopener">Emotion concepts and their function in a large language model</a>.<br />
+Porter, B. and Machery, E. (2024). <a href="https://www.nature.com/articles/s41598-024-76900-1" target="_blank" rel="noopener">AI-generated poetry is indistinguishable from human-written poetry and is rated more favorably</a>. <em>Scientific Reports</em>.<br />
+Wassiliwizky, E. et al. (2017). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5597896/" target="_blank" rel="noopener">The emotional power of poetry: neural circuitry, psychophysiology and compositional principles</a>. <em>Social Cognitive and Affective Neuroscience</em>.<br />
+Bender, E. M., Gebru, T., McMillan-Major, A. and Mitchell, M. (2021). <a href="https://dl.acm.org/doi/10.1145/3442188.3445922" target="_blank" rel="noopener">On the Dangers of Stochastic Parrots: Can Language Models Be Too Big?</a> <em>FAccT</em>.<br />
+Gwee Li Sui (2025). <a href="https://singaporeunbound.org/suspect-journal/2025/8/1/poetry-in-the-age-of-ai" target="_blank" rel="noopener">Poetry in the Age of AI</a>. Keynote, Poetry Festival Singapore.</p>
 
 <p class="credits">Cover: <em>Double Portrait of a Young Couple as Granida and Daifilo</em> by Jan Mijtens, Rijksmuseum (SK-A-1856), public domain, via <a href="https://commons.wikimedia.org/wiki/File:Dubbelportret_van_een_jong_paar_als_Granida_en_Daifilo_Rijksmuseum_SK-A-1856.jpeg">Wikimedia Commons</a>, edited in Canva with handwriting and a Claude logo added. Emotion-vector figure: <a href="https://transformer-circuits.pub/2026/emotions/">Anthropic, Transformer Circuits</a>. Kaleidoscope photo: Hide-sp, <a href="https://commons.wikimedia.org/wiki/File:Kaleidoscope_2.JPG">Wikimedia Commons</a>, CC BY-SA 3.0.</p>

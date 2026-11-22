@@ -24,6 +24,7 @@ const journal = defineCollection({
       .default([]),
     keywords: z.array(z.string()).default([]), // 2-4 index words that earn their place (see AGENTS.md)
     featured: z.boolean().default(false),
+    readTime: z.number().optional(),          // optional: override the automatic reading time (minutes)
     draft: z.boolean().default(false),        // true = hidden from the site
   }),
 });
