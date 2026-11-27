@@ -3,6 +3,8 @@
 Live site: https://thefinerthingsjournal.com · Repo: github.com/Shamika92/the-finer-things-journal (`main`)
 Stack: Astro (static). Hosting: Cloudflare Worker with static assets. **Every push to `main` deploys automatically in about a minute.**
 
+**Deploy setup (don't change):** the site deploys as plain static assets through `wrangler.jsonc` (it uploads `dist/`; wrangler is pinned in `package.json`). Don't delete `wrangler.jsonc` and don't add `@astrojs/cloudflare`. Without `wrangler.jsonc`, Cloudflare sets up the adapter by itself, rebuilds the site during deploy, and the journal posts can disappear (this happened on 27 Nov 2026).
+
 Most work here is **adding a new post**. Follow this guide exactly.
 
 ---
