@@ -5,6 +5,7 @@ import GrainImage from '../../components/GrainImage.astro';
 import PostCard from '../../components/PostCard.astro';
 import LikeButton from '../../components/LikeButton.astro';
 import ShareStory from '../../components/ShareStory.astro';
+import Subscribe from '../../components/Subscribe.astro';
 import { SITE, categoryLabel } from '../../data/site';
 import { getPosts, formatDate, readingTime } from '../../data/posts';
 import { slugify } from '../../data/keywords';
@@ -16,6 +17,15 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+// Credits and sources stay at the very end of the article, but the Like button sits just above them.
+const html = post.rendered?.html ?? '';
+const creditsAt = html.indexOf('<p class="credits"');
+const before = creditsAt > -1 ? html.slice(0, creditsAt) : '';
+const nested = before.lastIndexOf('<footer') > before.lastIndexOf('</footer>'); // credits inside a footer block: don't split
+const splitAt = creditsAt > -1 && !nested ? creditsAt : -1;
+const bodyHtml = splitAt > -1 ? html.slice(0, splitAt) : '';
+const tailHtml = splitAt > -1 ? html.slice(splitAt) : '';
 const { title, dek, category, date, updated, seoDescription, cover, coverAlt, coverShape, coverFocus, gallery, keywords } = post.data;
 
 const site = Astro.site!;
@@ -86,9 +96,20 @@ const more = [
       <GrainImage src={cover} alt={coverAlt} ratio={coverShape === 'portrait' ? '4 / 5' : '3 / 2'} focus={coverFocus} eager grain={false} />
     </div>
 
-    <div class="prose wrap">
-      <Content />
-    </div>
+    {splitAt > -1 ? (
+      <>
+        <div class="prose wrap"><Fragment set:html={bodyHtml} /></div>
+        <LikeButton />
+        <div class="prose tail wrap"><Fragment set:html={tailHtml} /></div>
+      </>
+    ) : (
+      <>
+        <div class="prose wrap">
+          <Content />
+        </div>
+        <LikeButton />
+      </>
+    )}
 
     {gallery.length > 0 && (
       <section class="gallery wrap" aria-label="Gallery">
@@ -110,9 +131,10 @@ const more = [
       </p>
     )}
 
-    <LikeButton />
-
     <ShareStory title={title} category={categoryLabel(category)} cover={cover} url={url} />
+
+    <Subscribe />
+
   </article>
 
   {more.length > 0 && (
@@ -156,8 +178,8 @@ const more = [
   .prose { max-width: calc(var(--measure) + 2 * var(--gutter)); font-size: 1.3rem; }
   .prose :global(p) { margin: 0 0 1.5rem; }
   /* keeps the drop cap inside the first paragraph, even when it is one line */
-  .prose > :global(p:first-of-type) { display: flow-root; }
-  .prose > :global(p:first-of-type::first-letter) {
+  .prose:not(.tail) > :global(p:first-of-type) { display: flow-root; }
+  .prose:not(.tail) > :global(p:first-of-type::first-letter) {
     float: left;
     font-family: var(--serif);
     font-weight: 300;

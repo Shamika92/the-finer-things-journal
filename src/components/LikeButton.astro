@@ -5,7 +5,7 @@
 <div class="like">
   <button type="button" data-like aria-pressed="false" aria-label="Like this post">
     <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.3C1.7 8 3.6 5 6.8 5c1.9 0 3.4 1 5.2 3 1.8-2 3.3-3 5.2-3 3.2 0 5.1 3 4 6.2-1.7 4.7-9.2 9.3-9.2 9.3z" /></svg>
-    <span class="eyebrow" data-like-text>Like this post</span>
+    <span class="eyebrow" data-like-text>Enjoyed this? Leave a heart</span>
   </button>
 </div>
 
@@ -18,7 +18,7 @@
     const write = (v: boolean) => { try { v ? localStorage.setItem(key, '1') : localStorage.removeItem(key); } catch {} };
     const paint = (on: boolean) => {
       btn.setAttribute('aria-pressed', String(on));
-      text.textContent = on ? 'Thank you' : 'Like this post';
+      text.textContent = on ? 'Thank you' : 'Enjoyed this? Leave a heart';
     };
     paint(read());
     btn.addEventListener('click', () => {
@@ -33,9 +33,10 @@
   .like { display: flex; justify-content: center; padding: 2.5rem var(--gutter) 0; }
   button {
     appearance: none; background: none; border: 0; cursor: pointer; padding: 0.4rem 0.2rem;
-    display: inline-flex; align-items: center; gap: 0.7rem; color: var(--ink);
+    display: inline-flex; align-items: center; gap: 0.7rem; color: #b3433a;
   }
+  button .eyebrow { color: inherit; }
   svg { fill: none; stroke: currentColor; stroke-width: 1.4; transition: fill 0.25s, transform 0.25s, color 0.25s; }
   button:hover svg { transform: scale(1.08); }
-  button[aria-pressed='true'] svg { fill: var(--accent); stroke: var(--accent); }
+  button[aria-pressed='true'] svg { fill: #b3433a; stroke: #b3433a; }
 </style>

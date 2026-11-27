@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import PostGrid from '../components/PostGrid.astro';
 import LeadStory from '../components/LeadStory.astro';
 import CategoryFilter from '../components/CategoryFilter.astro';
+import Subscribe from '../components/Subscribe.astro';
 import { SITE } from '../data/site';
 import { getPosts } from '../data/posts';
 
@@ -22,6 +23,8 @@ const [lead, ...rest] = posts;
     <PostGrid posts={rest} />
     <p class="empty" data-empty hidden>Nothing here yet. Something is being written.</p>
   </section>
+
+  <Subscribe />
 </Base>
 
 <style>

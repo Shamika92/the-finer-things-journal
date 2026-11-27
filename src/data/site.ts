@@ -14,6 +14,8 @@ export const SITE = {
   // Shared when a page has no cover photo of its own (must be JPG/PNG, 1200×630).
   defaultImage: '/og-default.jpg',
   email: 'thefinerthingsjournal@gmail.com',
+  // Email signup runs on Buttondown (buttondown.com/<username>).
+  newsletter: { buttondown: 'thefinerthingsjournal' },
   instagram: {
     handle: '@thefinerthingsjournal',
     url: 'https://www.instagram.com/thefinerthingsjournal/',

@@ -1,0 +1,75 @@
+---
+// Email signup (Buttondown). A plain HTML form: no scripts needed, and the
+// confirmation page opens in a new tab. Subscribers get a confirmation email first.
+import { SITE } from '../data/site';
+---
+<section class="subscribe wrap" aria-label="Email signup">
+  <span class="eyebrow">By email</span>
+  <p class="lead">Get new entries</p>
+  <p class="note">Unsubscribe any time.</p>
+  <form
+    action={`https://buttondown.com/api/emails/embed-subscribe/${SITE.newsletter.buttondown}`}
+    method="post"
+    target="_blank"
+    data-subscribe
+  >
+    <label class="sr" for="subscribe-email">Email address</label>
+    <input id="subscribe-email" type="email" name="email" placeholder="Your email address" autocomplete="email" required />
+    <input type="hidden" name="embed" value="1" />
+    <button type="submit" class="eyebrow">Subscribe</button>
+  </form>
+</section>
+
+<script>
+  document.querySelector('[data-subscribe]')?.addEventListener('submit', () => {
+    (window as any).gtag?.('event', 'subscribe', { page_path: location.pathname });
+  });
+</script>
+
+<style>
+  .subscribe { text-align: center; margin-top: clamp(3.5rem, 8vw, 5.5rem); }
+  .lead {
+    margin: 0.6rem 0 0;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.6rem;
+    color: var(--ink);
+  }
+  .note { margin: 0.4rem 0 1.4rem; color: var(--ink-soft); font-size: 1rem; }
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    gap: 0.8rem 1.4rem;
+    max-width: 30rem;
+    margin: 0 auto;
+  }
+  input[type='email'] {
+    flex: 1 1 14rem;
+    min-width: 0;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid var(--rule);
+    padding: 0.5rem 0.1rem;
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--ink);
+    text-align: center;
+    border-radius: 0;
+  }
+  input[type='email']::placeholder { color: var(--ink-faint); font-style: italic; }
+  input[type='email']:focus { outline: none; border-color: var(--ink); }
+  button {
+    appearance: none;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid var(--ink);
+    padding: 0.3rem 0;
+    cursor: pointer;
+    color: var(--ink);
+    transition: color 0.3s, border-color 0.3s;
+  }
+  button:hover { color: var(--accent); border-color: var(--accent); }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
