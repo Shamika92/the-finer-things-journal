@@ -95,6 +95,8 @@ These waves do not particularly replace one another. A person may drink instant 
 
 ## The Wine-ification of Coffee
 
+Independent roasters borrowed wine's language for good reasons. They could not beat the big chains on price, convenience or real estate, so their advantage had to be quality. The vocabulary let them explain their craft, justify higher prices that help keep small farms alive, and give customers a reason to choose them over the chains.
+
 At the same time, specialized vocabulary brings new social hierarchies. Knowing how to order a washed single-origin pour-over becomes a subtle marker of taste and cultural capital. The line between genuine appreciation and snobbery can thin quickly, especially when simpler preferences, such as taking coffee with milk and sugar, start feeling unfashionable.
 
 There is also a practical economic question behind the storytelling. Specialty coffee is priced much higher than commercial blends, and direct-trade roasters have helped many smallholder farmers earn better returns. Still, a large share of an expensive cup goes toward city rents, equipment, packaging, and labor, so higher menu prices do not automatically mean the grower is taking home the difference.
