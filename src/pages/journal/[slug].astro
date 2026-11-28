@@ -269,6 +269,23 @@ const more = [
     width: min(calc(100vw - 2 * var(--gutter)), 860px);
   }
   .prose :global(figure.pair .grain) { aspect-ratio: 4 / 5; }
+  /* 2x2 grid of images, each with its own short caption */
+  .prose :global(figure.quad) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.25rem, 3vw, 1.75rem) clamp(0.9rem, 2vw, 1.25rem);
+  }
+  .prose :global(figure.quad .grain) { aspect-ratio: 1 / 1; }
+  .prose :global(figure.quad img) { height: 100%; }
+  .prose :global(figure.quad .cap) {
+    margin: 0.7rem 0 0;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    line-height: 1.35;
+    color: var(--ink-soft);
+  }
+
   .prose :global(figure.pair img) { height: 100%; }
   .prose :global(figure.pair figcaption) { grid-column: 1 / -1; margin-top: 0; }
   .prose :global(figure.narrow) { max-width: 400px; margin-inline: auto; }
